@@ -1,30 +1,41 @@
--- Users Table
+-- Users table to handle admin, employee, maintenance 
+/*
 CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    role VARCHAR(100) NOT NULL,
+    id INT PRIMARY KEY,
+    firstname VARCHAR(50) NOT NULL,
+    lastname VARCHAR(50) NOT NULL,
+    role ENUM('admin', 'employee', 'maintenance'),
     email VARCHAR(100) UNIQUE NOT NULL,
-    password VARCHAR(100) NOT NULL;
+    password VARCHAR(100) NOT NULL
 );
-
--- Projects Table
-CREATE TABLE projects (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
+*/
+CREATE TABLE equipment (
+id CHAR(8) PRIMARY KEY,
+name ENUM('Upright Bike', 'Treadmill','Elliptical','Recumbent Bike','Adaptive Motion Trainer','Stair Climber'),
+location ENUM('Cardio 1', 'Cardio 2','Cardio 3'),
+serial_number INT NOT NULL,
+equipment_condition ENUM('excellent','good','fair','poor')
+);
+ /*
+ CREATE TABLE work_orders (
+    id INT PRIMARY KEY,
+    admin_id INT DEFAULT NULL,
+    equipment_id INT,
+    status ENUM('requested', 'approved', 'in progress', 'completed', 'rejected'),
+    date_requested TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    date_completed TIMESTAMP NULL,
+    cost DECIMAL(10,2) DEFAULT 0.00,
     description TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    FOREIGN KEY (admin_id) REFERENCES users(id),
+    FOREIGN KEY (equipment_id) REFERENCES equipment(id)
 );
 
--- Tasks Table
-CREATE TABLE tasks (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    project_id INT,
-    user_id INT,
-    title VARCHAR(255) NOT NULL,
-    status ENUM('Pending', 'In Progress', 'Completed') DEFAULT 'Pending',
-    due_date DATE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
-);
-
+CREATE TABLE maintenance_history (
+    id INT PRIMARY KEY,
+    work_order_id INT,
+    maintenance_id INT,
+    date_completed TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    details TEXT,
+    FOREIGN KEY (work_order_id) REFERENCES work_orders(id),
+    FOREIGN KEY (maintenance_id) REFERENCES users(id)
+);*/
