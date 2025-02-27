@@ -2,16 +2,18 @@ from config import db
 
 class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(80), unique=False, nullable=False)
-    last_name = db.Column(db.String(80), unique=False, nullable=False)
+    firstname = db.Column(db.String(80), unique=False, nullable=False)
+    lastname = db.Column(db.String(80), unique=False, nullable=False)
+    role = db.Column(db.Enum('admin','employee','maintenance'), nullable=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(120), unique=False, nullable=False)
+    password = db.Column(db.String(120), nullable=False)
     
     def to_json(self): 
         return {
             "id": self.id,
-            "firstName": self.first_name,
-            "lastName": self.last_name,
+            "firstName": self.firstname,
+            "lastName": self.lastname,
+            "role": self.role,
             "email": self.email,
             "password": self.password
         }
