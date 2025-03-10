@@ -3,6 +3,10 @@ import dotenv from "dotenv"
 import sequelize from "sequelize"
 import authRoute from "./routes/auth.js"
 import usersRoute from "./routes/users.js"
+import equipmentRoute from "./routes/equipment.js"
+import maintenanceRoute from "./routes/maintenance.js"
+import reportsRoute from "./routes/reports.js"
+import workordersRoute from "./routes/workorders.js"
 
 
 const app = express()
@@ -23,8 +27,13 @@ const connect = async () => {
 }
 };
 
+//middlewares
 app.use("/auth", authRoute);
 app.use("/users", usersRoute);
+app.use("/equipment", authRoute);
+app.use("/maintenance", usersRoute);
+app.use("/reports", authRoute);
+app.use("/workorders", usersRoute);
 
 app.listen(5000, async () => {
 await connect()
