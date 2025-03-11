@@ -1,10 +1,5 @@
-import sequelize from 'sequelize';
-
-const { sequelize, DataTypes } = require('sequelize');
-const userschema = new sequelize('database', 'username', 'password', {
-    host: 'localhost',
-    dialect: 'mysql'
-});
+import DataTypes from "sequelize"
+import sequelize from "../configdatabase.js"
 
 const Users = sequelize.define('User', {
     id: {
@@ -35,4 +30,4 @@ const Users = sequelize.define('User', {
     }
 }, { timestamps: false });
 
-module.exports = User;
+export default Users
