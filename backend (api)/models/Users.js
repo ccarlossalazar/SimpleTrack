@@ -27,7 +27,24 @@ const Users = sequelize.define('User', {
     password: {
         type: DataTypes.STRING(100),
         allowNull: false
+    },
+    isAdmin: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+    },
+    isEmployee: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+    },
+    isMaintenance: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+    },
+    username: {
+        type: DataTypes.STRING(20),
+        allowNull: false,
+        unique: true
     }
-}, { timestamps: false });
+})
 
 export default Users

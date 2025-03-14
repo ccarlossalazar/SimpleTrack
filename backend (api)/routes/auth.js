@@ -1,14 +1,9 @@
 import express from "express"
+import {register, login} from "../controllers/authcon.js"
 
 const router = express.Router()
 
-router.get("/", (req, res) => {
-    res.send("This is the auth page")
-})
-
-router.get("/register", (req, res) => {
-    res.send("This is the register page")
-})
-
+router.post("/register", register)
+router.post("/login", login)
 
 export default router
