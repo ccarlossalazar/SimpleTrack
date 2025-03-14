@@ -1,7 +1,5 @@
 import Users from '../models/Users.js'
 
-
-
 export const updateUser = async (req,res,next)=>{
     try {
         const updatedUser = await Users.update(req.body, {

@@ -1,27 +1,17 @@
 import express from "express";
-import Equipment from "../models/Equipment.js";
+import {createEquipment, updateEquipment, deleteEquipment, getEquipment, getAllEquipment} from "../controllers/equipmentcon.js"
 
 const router = express.Router()
 
 //Create
-router.post("/", async (req, res)=> {
-
-const newEquipment = new Equipment(req,body)
-
-    try{
-        const savedEquipment = await newEquipment.save()
-        res.status(200).json(savedEquipment)
-    } catch (err) {
-        res.status(500).json(err)
-    }
-})
+router.post("/", createEquipment)
 //Update
-
+router.put("/:id", updateEquipment) 
 //Delete
-
+router.delete("/:id", deleteEquipment)
 //GET
-
+router.get("/:id", getEquipment)
 //GET ALL
-
+router.get("/", getAllEquipment)
 
 export default router

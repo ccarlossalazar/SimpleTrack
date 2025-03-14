@@ -22,8 +22,6 @@ const Equipment = sequelize.define('Equipment', {
         type: DataTypes.ENUM('excellent', 'good', 'fair', 'poor'),
         allowNull: false
     }
-}, {
-    timestamps: false // Disables createdAt & updatedAt fields
-});
+})
 
-export default Equipment;
+export default Equipment
