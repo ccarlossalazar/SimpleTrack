@@ -1,17 +1,63 @@
-import Logo from '../assets/logo.png'
 
+import Logo from '/src/assets/logo.png'
+import { SquareMenu, X } from "lucide-react"
+import { useState } from "react"
 const Navbar = () => {
+const [menuDrawerUp, setMenuDrawerUp] = useState(false)
+    
+const toggleMenuDrawer = () => {
+        setMenuDrawerUp(!menuDrawerUp)
+    }
+
     return (
         <nav className="sticky top-0 z-50 py-3 backdrop-blur-lg border-b 
-        border-neutral-700/80">
+        border-neutral-700/80 bg-opacity-90">
             <div className="container px-4 mx-auto relative text-sm">
-                <div className="flex justify-center items-center">
+                <div className="flex justify-between items-center">
                     <div className="flex items-center flex-shrink-0">
                     <img className="h-10 w-10 mr-2" src={Logo} alt="logo"/>
                     <span className="text-xl tracking-tight">Simple Track</span>
                     </div>
+                    <div className="justify center">
+                        <ul className="hidden lg:flex ml-14 space-x-12 ">
+                        <li>
+                        <a href="#">About</a> 
+                        </li>
+                        <li>
+                        <a>Features</a>
+                        </li>
+                        <li>
+                        <a>Check it out</a>
+                        </li>
+                        </ul>
+                        </div>
+                    <div className="hidden lg:flex justify-center space-x-12 items-center">
+                    <a href="#" className="bg-gradient-to-r from-blue-500 to-blue-700 py-2 px-3 rounded-md">Login</a>
+                    </div>
+                    <div className="lg:hidden md:flex flex-col justify-end">
+                    <button onClick={toggleMenuDrawer}>
+                        {menuDrawerUp ? <X /> : <SquareMenu />}
+                    </button>
+                    </div>
+                    </div>
+                    {menuDrawerUp && (
+                    <div className="fixed right-0 z-20 bg-neutral-900 w-full p-12 flex flex-col justify-center items-center lg:hidden">
+                        <ul className="py-4">
+                        <li>
+                        <a href="#">About</a> 
+                        </li>
+                        <li>
+                        <a>Features</a>
+                        </li>
+                        <li>
+                        <a>Check it out</a>
+                        </li>
+                        </ul>
+                        <div className="space-x-6 flex py-2">
+                        <a href="#" className="bg-gradient-to-r from-blue-500 to-blue-700 py-2 px-3 rounded-md">Login</a>
+                        </div>
+                    </div>)}
                 </div>
-            </div>
         </nav>
     );
 };
