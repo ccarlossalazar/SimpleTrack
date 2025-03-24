@@ -27,7 +27,7 @@ try{
 
 export const login = async (req,res,next) => {
     try{
-    const user = await Users.findOne({where: {username: req.body.username}})
+    const user =await Users.findOne({where: {username: req.body.username}})
     if(!user) {return (next(newError(404, "User not found")))}
 
     const correctPassword = await bycrypt.compare(req.body.password, user.password)
@@ -43,4 +43,4 @@ export const login = async (req,res,next) => {
     } catch (err) {
         next(err)
         }
-    }
+    } 

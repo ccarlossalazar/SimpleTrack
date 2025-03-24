@@ -2,6 +2,8 @@
 import Logo from '/src/assets/logo.png'
 import { SquareMenu, X } from "lucide-react"
 import { useState } from "react"
+import {Link} from 'react-router-dom'
+
 const Navbar = () => {
 const [menuDrawerUp, setMenuDrawerUp] = useState(false)
     
@@ -54,7 +56,7 @@ const toggleMenuDrawer = () => {
                         </li>
                         </ul>
                         <div className="space-x-6 flex py-2">
-                        <a href="#" className="bg-gradient-to-r from-blue-500 to-blue-700 py-2 px-3 rounded-md">Login</a>
+                        <Link to="/login" className="bg-gradient-to-r from-blue-500 to-blue-700 py-2 px-3 rounded-md">Login</Link>
                         </div>
                     </div>)}
                 </div>

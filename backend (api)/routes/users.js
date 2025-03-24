@@ -1,6 +1,5 @@
 import express from "express"
-import {updateUser,deleteUser,
-getUser, getUsers} from "../controllers/userscon.js"
+import {updateUser,deleteUser, getUser, getUsers} from "../controllers/userscon.js"
 import {verifyToken, verifyUser} from "../util/verifyJWT.js"
 
 const router = express.Router()
@@ -10,7 +9,7 @@ res.send("Hello user you are verified")
 })
 
 router.get("/checkuser/:id", verifyUser, (req,res,next)=>{
-res.send("You are logged in and can delete your account or anyone elses")
+res.send("You are logged in and can delete your account")
 })
 //Update
 router.put("/:id", updateUser) 
