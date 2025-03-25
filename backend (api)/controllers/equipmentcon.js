@@ -55,3 +55,15 @@ export const getAllEquipment = async (req,res,next)=>{
         next(err)
     }
 }
+
+export const countByType = async (req,res,next)=>{
+    const locations = req.query.locations.split(",")
+    try {
+        const list = await Promise.all(locations.map(location=>{
+            return Equipment.count({where: {location}})
+        }))
+        res.status(200).json(list)
+    } catch (err) {
+        next(err)
+    }
+}
