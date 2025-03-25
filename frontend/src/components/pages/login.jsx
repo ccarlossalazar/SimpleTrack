@@ -1,35 +1,38 @@
-import React from 'react'
+import React from "react";
 import './login.css'
-import {Mail, Lock, User} from 'lucide-react'
+import {User, Lock, ArrowLeft} from 'lucide-react'
+import { Link } from 'react-router-dom'
 
-function Login() {
-     return (
-        <div className="login">
-            <div className="top">
-            <div className="text">Sign In</div>
-            <div className="underline"></div>
-            </div>  
-            <div className="inputs">
-                <div className="input">
-                    <User />
-                    <img src="" alt=""></img>
-                    <input type="text" placeholder="Username" />
-                </div> 
-                <div className="input">
-                    <Mail />
-                    <img src="" alt=""></img>
-                    <input type="email" placeholder="Email"  />
-                </div> 
-                <div className="input">
-                    <Lock />
-                    <img src="" alt=""></img>
-                    <input type="password" placeholder="Password"  />
-                </div> 
-            </div>
-            <div className="submit-container">
-            <div className="submit">Login</div>
-            </div>        
+const Login = () => {
+  return (
+<div className="login-page">
+<Link to="/"><button className="back flex text-white mx-4 py-4"><ArrowLeft />Back to Home </button></Link>
+<div className="login2">
+    <div className="flex flex-col bg-gray-700 rounded-lg justify-center items-center  max-w-md w-full shadow-2xl p-4">
+    <form className="p-5">
+        <img src="/assets/logo.png" className="w-40 h-32 mb-6 justify-center"/>
+        <h1 className="text-center">Login</h1>
+        <div className='inputs p-4'>
+        <div className="input flex mb-4 p-4 bg-gray-300 text-black rounded-2xl">
+        <User />
+        <input type='text' className="placeholder-black" placeholder="Username" required/>
         </div>
-     )
-}
-export default Login
+        <div className="input flex mb-4 p-4 bg-gray-300 text-black rounded-2xl">
+        <Lock />
+        <input type='text' className="placeholder-black" placeholder="Password" required/>
+        </div>
+        </div>
+        <div className='remember pb-10'>
+            <label><input type='checkbox'/>Remember Me</label>
+        </div>
+        <div className="bg-blue-500 mx-auto rounded-2xl">
+        <button type='submit' className="text-center w-full p-2">Login</button>
+        </div>
+    </form>
+    </div>
+    </div>
+</div>
+  );
+};
+
+export default Login;
