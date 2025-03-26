@@ -28,11 +28,13 @@ const people = [
         <div className="mx-auto grid max-w-7xl gap-20 px-6 lg:px-8 xl:grid-cols-3">
           <div className="max-w-xl">
             <h2 className="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl">
-              Meet our Team
+              Meet our team
             </h2>
             <p className="mt-6 text-lg/8 text-gray-600">
-              We’re a dynamic group of individuals who are passionate about what we do and dedicated to delivering the
-              best results for our clients.
+            Meet the dedicated team behind our recreation facility! Our passionate staff is committed to 
+            creating a fun, safe, and engaging environment for all visitors. From fitness trainers to facility 
+            managers, every team member plays a vital role in making your experience enjoyable. Get to know the 
+            people who bring our community together!
             </p>
           </div>
           <ul role="list" className="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
