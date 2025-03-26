@@ -1,5 +1,5 @@
 import express from "express";
-import {createEquipment, updateEquipment, deleteEquipment, getEquipment, getAllEquipment, countByType} from "../controllers/equipmentcon.js"
+import {createEquipment, updateEquipment, deleteEquipment, getEquipment, getAllEquipment, countByLocation, countByType} from "../controllers/equipmentcon.js"
 
 const router = express.Router()
 
@@ -13,7 +13,9 @@ router.delete("/:id", deleteEquipment)
 router.get("/find/:id", getEquipment)
 //GET ALL
 router.get("/", getAllEquipment)
-//router.get("/countByLocation", countByLocation)
+//Count by type of equipment
 router.get("/countByType", countByType)
+//Equipment Count by location
+router.get("/countByLocation", countByLocation)
 
 export default router

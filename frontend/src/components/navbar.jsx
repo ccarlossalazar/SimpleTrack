@@ -65,7 +65,7 @@ const toggleMenuDrawer = () => {
                     </div>)}
                 </div>
         </nav>
-    );
-};
+    )
+}
 
 export default Navbar

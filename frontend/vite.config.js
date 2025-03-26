@@ -8,7 +8,11 @@ export default defineConfig({
     tailwindcss()
   ],server: {
     proxy: {
-      '/': 'http://localhost:5000',
+      '/equipment': {
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+        secure: false,
+      }
     },
   },
 })
