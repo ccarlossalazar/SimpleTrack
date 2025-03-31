@@ -18,7 +18,7 @@ const HomePage = () => {
       <HeroSection />
       <TeamSection />
       </div>
-    );
-  };
+    )
+  }
   
-  export default HomePage;
+  export default HomePage
