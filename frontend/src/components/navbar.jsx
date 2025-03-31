@@ -17,7 +17,7 @@ const toggleMenuDrawer = () => {
             <div className="container px-4 mx-auto relative text-sm">
                 <div className="flex justify-between items-center">
                     <div className="flex items-center flex-shrink-0">
-                    <img className="h-12 w-12 mr-2" src={Logo} alt="logo"/>
+                    <Link to='/'><button><img className="h-12 w-12 mr-2" src={Logo} alt="logo"/></button></Link>
                     <span className="text-2xl tracking-tight">Simple Track</span>
                     </div>
                     <div className="items-center">

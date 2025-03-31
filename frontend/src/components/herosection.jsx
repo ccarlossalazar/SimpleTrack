@@ -2,7 +2,7 @@ import useFetch from "../hooks/useFetch"
  
  
  const HeroSection = () => {
-    const {data,loading} = useFetch("equipment/countByType")
+    const {data,loading} = useFetch("/equipment/countByType")
 
     return (
     <div>
@@ -101,9 +101,13 @@ import useFetch from "../hooks/useFetch"
             </div>
           </div>
         </div>
-        {loading ? ("Loading Please Wait!") : (<>
-        <h1>Count</h1>
-        </>)}
+        {loading ? (
+            "Loading Please Wait!"
+          ) : data && data.length > 0 ? (
+            <h1>Count {data[0].count} and {data[0].name}</h1>
+          ) : (
+            <h1>No data available</h1>
+          )}
       </div>
     </div>
     )

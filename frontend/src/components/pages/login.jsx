@@ -1,9 +1,19 @@
-import React from "react";
+//import {React, useState, useContext} from "react";
+import React from 'react'
 import './login.css'
 import {User, Lock, ArrowLeft} from 'lucide-react'
 import { Link } from 'react-router-dom'
+//import { AuthContextProvider } from "../../context/authContext.js";
 
 const Login = () => {
+
+/* const [ credentials, setCredentials ] = useState ({
+    username:undefined,
+    password: undefined,
+  })
+
+  const {loading, error, dispatch} = useContext(AuthContextProvider)*/
+
   return (
 <div className="login-page">
 <Link to="/"><button className="back flex text-white mx-4 py-4"><ArrowLeft />Back to Home </button></Link>
