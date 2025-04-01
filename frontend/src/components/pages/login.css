@@ -1,11 +1,5 @@
 @import "tailwindcss";
 
-.login-page {
-height:100vh;
-background-image: url('/assets/background.jpg');
-background-size: cover;
-}
-
 .login2 {
 display: flex;
 justify-content: center;

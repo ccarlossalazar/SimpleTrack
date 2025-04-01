@@ -15,7 +15,7 @@ const Login = () => {
   const {loading, error, dispatch} = useContext(AuthContextProvider)*/
 
   return (
-<div className="login-page">
+<div className="login-page min-w-screen min-h-screen bg-cover bg-[url('/assets/background.jpg')]">
 <Link to="/"><button className="back flex text-white mx-4 py-4"><ArrowLeft />Back to Home </button></Link>
 <div className="login2">
     <div className="flex flex-col bg-gray-700 rounded-lg justify-center items-center  max-w-md w-full shadow-2xl p-4">
