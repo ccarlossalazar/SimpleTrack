@@ -8,8 +8,8 @@ import useFetch from "../hooks/useFetch"
     <div>
       <div className=" py-24 sm:py-12">
         <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-        <div className='flex flex-col justify-center items-center'>
-          <p className="mx-auto mt-2 max-w-lg text-center text-4xl font-semibold tracking-tight text-balance text-gray-100 sm:text-5xl pb-5">
+        <div className='flex flex-col justify-center items-center brightness-75 bg-center bg-[url(https://www.stmarys-ca.edu/sites/default/files/2023-02/rec_center_01.jpg)]'>
+          <p className="mx-auto mt-2 max-w-lg text-center text-4xl font-semibold tracking-tight text-balance sm:text-5xl pb-5 text-blue-950">
             Saint Mary's Campus Recreation
           </p>
           <img src="/assets/logo.png"/>
@@ -23,7 +23,7 @@ import useFetch from "../hooks/useFetch"
                     Mobile friendly
                   </p>
                   <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
-                Use our Campus Recreation app to sing in.
+                Use our Campus Recreation app to sign in.
                   </p>
                 </div>
                 <div className="@container relative min-h-[30rem] w-full grow max-lg:mx-auto max-lg:max-w-sm">
@@ -45,12 +45,9 @@ import useFetch from "../hooks/useFetch"
                     NCAA regulated pool that is heated to 80 degrees. There is also a spa used for recovery and relaxation.
                   </p>
                 </div>
-                <div className="flex flex-1 items-center justify-center px-8 max-lg:pt-10 max-lg:pb-12 sm:px-10 lg:pb-2">
-                  <img
-                    className="w-full max-lg:max-w-xs rounded-lg"
-                    src="/assets/pool.jpg"
-                    alt=""
-                  />
+                <div className="flex flex-col items-center justify-center px-8 max-lg:pt-10 max-lg:pb-12 sm:px-10 lg:pb-2">
+                  <img className="w-full max-lg:max-w-xs rounded-lg" src="/assets/pool.jpg" alt=""/>
+                  <img src="/assets/doublegym.jpg" className="rounded-lg w-full pt-2"/>
                 </div>
               </div>
               <div className="pointer-events-none absolute inset-px rounded-lg ring-1 shadow-sm ring-black/5 max-lg:rounded-t-[2rem]"></div>
