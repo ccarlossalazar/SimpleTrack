@@ -1,6 +1,5 @@
 //import {React, useState, useContext} from "react";
 import React from 'react'
-import './login.css'
 import {User, Lock, ArrowLeft} from 'lucide-react'
 import { Link } from 'react-router-dom'
 //import { AuthContextProvider } from "../../context/authContext.js";
@@ -17,11 +16,11 @@ const Login = () => {
   return (
 <div className="login-page min-w-screen min-h-screen bg-cover bg-[url('/assets/background.jpg')]">
 <Link to="/"><button className="back flex text-white mx-4 py-4"><ArrowLeft />Back to Home </button></Link>
-<div className="login2">
-    <div className="flex flex-col bg-gray-700 rounded-lg justify-center items-center  max-w-md w-full shadow-2xl p-4">
+<div className="flex justify-center">
+    <div className="flex bg-gray-700 rounded-lg justify-center items-center  max-w-md w-full shadow-2xl p-4">
     <form className="p-5">
-        <img src="/assets/logo.png" className="w-40 h-32 mb-6 justify-center"/>
-        <h1 className="text-center">Login</h1>
+        <img src="/assets/logo.png" className="w-40 h-32 mb-6 ml-14"/>
+        <h1 className="text-center font-semibold">Login</h1>
         <div className='inputs p-4'>
         <div className="input flex mb-4 p-4 bg-gray-300 text-black rounded-2xl">
         <User />
