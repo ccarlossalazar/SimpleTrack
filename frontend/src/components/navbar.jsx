@@ -1,8 +1,9 @@
 
 import Logo from '/src/assets/logo.png'
 import { SquareMenu, X } from "lucide-react"
-import { useState } from "react"
+import { useState, useContext } from "react"
 import {Link } from 'react-router-dom'
+import { AuthContext } from "../context/authContext.jsx"
 
 const Navbar = () => {
 const [menuDrawerUp, setMenuDrawerUp] = useState(false)
@@ -11,16 +12,18 @@ const toggleMenuDrawer = () => {
         setMenuDrawerUp(!menuDrawerUp)
     }
 
+  const { user } = useContext(AuthContext)
+
+
     return (
-        <nav className="sticky top-0 z-50 py-8 backdrop-blur-lg border-b 
-        border-neutral-700/80 bg-opacity-90">
+        <nav className="sticky top-0 z-50 py-8 backdrop-blur-lg border-b border-neutral-700/80 bg-opacity-90">
             <div className="container px-4 mx-auto relative text-sm">
                 <div className="flex justify-between items-center">
                     <div className="flex items-center flex-shrink-0">
                     <Link to='/'><button><img className="h-12 w-12 mr-2" src={Logo} alt="logo"/></button></Link>
                     <span className="text-2xl tracking-tight">Simple Track</span>
                     </div>
-                    <div className="items-center">
+                    <div>
                         <ul className="hidden lg:flex ml-14 space-x-12 text-xl">
                         <li>
                         <a href="#">About</a> 
@@ -33,11 +36,13 @@ const toggleMenuDrawer = () => {
                         </li>
                         </ul>
                         </div>
+                        {user ? user.username : (
                     <div className="hidden lg:flex justify-center space-x-12 items-center">
                     <Link to='/login'>
-                    <button href="#" className="bg-gradient-to-r from-blue-500 to-blue-700 py-2 px-3 rounded-lg text-xl">Login</button>
+                    <button className="bg-gradient-to-r from-blue-500 to-blue-700 py-2 px-3 rounded-lg text-xl">Login</button>
                     </Link>
                     </div>
+                        )}
                     <div className="lg:hidden md:flex flex-col justify-end">
                     <button onClick={toggleMenuDrawer}>
                         {menuDrawerUp ? <X /> : <SquareMenu />}
@@ -57,11 +62,13 @@ const toggleMenuDrawer = () => {
                         <a>Check it out</a>
                         </li>
                         </ul>
+                        {user ? user.username : (
                         <div className="space-x-6 flex py-2">
                         <Link to='/login'>
                         <button className="bg-gradient-to-r from-blue-500 to-blue-700 py-2 px-3 rounded-md">Login</button>
                         </Link>
                         </div>
+                        )}
                     </div>)}
                 </div>
         </nav>

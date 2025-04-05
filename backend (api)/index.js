@@ -15,9 +15,9 @@ const app = express()
 const connect = async () => {
     try {
     await sequelize.authenticate(); 
-    console.log("Connected to MYSQL database");
+    console.log("Connected to MYSQL database")
     } catch (error) {
-    console.error("Database connection error:", error);
+    console.error("Database connection error:", error)
 }
 };
 
@@ -27,12 +27,12 @@ app.use(cors())
 app.use(cookieParser())
 app.use(express.json())
 
-app.use("/auth", authRoute);
-app.use("/users", usersRoute);
-app.use("/equipment", equipmentRoute);
-app.use("/maintenance", maintenanceRoute);
-app.use("/reports", reportsRoute);
-app.use("/workorders", workordersRoute);
+app.use("/auth", authRoute)
+app.use("/users", usersRoute)
+app.use("/equipment", equipmentRoute)
+app.use("/maintenance", maintenanceRoute)
+app.use("/reports", reportsRoute)
+app.use("/workorders", workordersRoute)
 
 app.use((err,req,res,next)=>{
     const errorStatus = err.status || 500
@@ -47,5 +47,5 @@ app.use((err,req,res,next)=>{
 
 app.listen(5000, async () => {
 await connect()
-console.log("Connected to backend server");
-});
+console.log("Connected to backend server")
+})

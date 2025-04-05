@@ -6,14 +6,8 @@ import useFetch from "../hooks/useFetch"
 
     return (
     <div>
-      <div className=" py-24 sm:py-12">
-        <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-        <div className='flex flex-col justify-center items-center brightness-75 bg-center bg-[url(https://www.stmarys-ca.edu/sites/default/files/2023-02/rec_center_01.jpg)]'>
-          <p className="mx-auto mt-2 max-w-lg text-center text-4xl font-semibold tracking-tight text-balance sm:text-5xl pb-5 text-blue-950">
-            Saint Mary's Campus Recreation
-          </p>
-          <img src="/assets/logo.png"/>
-          </div>
+      <div className="sm:py-12">
+        <div className="mx-auto max-w-2xl px-7 lg:max-w-7xl lg:px-8">
           <div className="mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2">
             <div className="relative lg:row-span-2">
               <div className="absolute inset-px rounded-lg bg-gray-300 lg:rounded-l-[2rem]"></div>
