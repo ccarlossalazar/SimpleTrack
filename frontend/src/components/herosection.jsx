@@ -6,7 +6,7 @@ import useFetch from "../hooks/useFetch"
 
     return (
     <div>
-      <div className="sm:py-12">
+      <div>
         <div className="mx-auto max-w-2xl px-7 lg:max-w-7xl lg:px-8">
           <div className="mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2">
             <div className="relative lg:row-span-2">

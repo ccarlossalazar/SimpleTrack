@@ -27,7 +27,7 @@ const people = [
   
   const TeamSection = () => {
     return (
-      <div className="bg-[#003768] py-24 sm:py-32 mx-10 rounded-3xl">
+      <div className="bg-gray-500 py-24 sm:py-32 mx-10 rounded-3xl mb-20">
         <div className="mx-auto grid max-w-7xl gap-20 px-6 lg:px-8 xl:grid-cols-3">
           <div className="max-w-xl">
             <h2 className="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl">
