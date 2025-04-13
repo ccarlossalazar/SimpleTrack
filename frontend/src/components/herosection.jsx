@@ -7,7 +7,7 @@ import useFetch from "../hooks/useFetch"
     return (
     <div>
       <div>
-        <div className="mx-auto max-w-2xl px-7 lg:max-w-7xl lg:px-8">
+        <div className="m-5 max-w-screen">
           <div className="mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2">
             <div className="relative lg:row-span-2">
               <div className="absolute inset-px rounded-lg bg-gray-300 lg:rounded-l-[2rem]"></div>
@@ -16,7 +16,7 @@ import useFetch from "../hooks/useFetch"
                   <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
                     Mobile friendly
                   </p>
-                  <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
+                  <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center text-center">
                 Use our Campus Recreation app to sign in.
                   </p>
                 </div>
@@ -35,7 +35,7 @@ import useFetch from "../hooks/useFetch"
               <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)]">
                 <div className="px-8 pt-8 sm:px-10 sm:pt-10">
                   <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">Performance</p>
-                  <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
+                  <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center text-center">
                     NCAA regulated pool that is heated to 80 degrees. There is also a spa used for recovery and relaxation.
                   </p>
                 </div>

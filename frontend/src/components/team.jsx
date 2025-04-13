@@ -17,23 +17,18 @@ const people = [
         imageUrl:
           'https://images.icon-icons.com/38/PNG/512/femaleuser_user_female_4515.png',
         email: 'myl4@stmarys-ca.edu'
-        },    {
-        name: 'Udayan Das',
-        role: 'Professor',
-        imageUrl:
-          'https://e7.pngegg.com/pngimages/791/512/png-clipart-user-profile-computer-icons-internet-bot-others-miscellaneous-monochrome.png',
-      },
+        },
   ]
   
   const TeamSection = () => {
     return (
-      <div className="bg-gray-500 py-24 sm:py-32 mx-10 rounded-3xl mb-20">
+      <div className="bg-white py-24 sm:py-32 m-5 rounded-3xl mb-20" id="contact">
         <div className="mx-auto grid max-w-7xl gap-20 px-6 lg:px-8 xl:grid-cols-3">
           <div className="max-w-xl">
             <h2 className="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl">
               Meet Our Team
             </h2>
-            <p className="mt-6 text-lg/8 text-gray-600">
+            <p className="mt-6 text-lg/8 text-gray-900">
             Meet the dedicated team behind our recreation facility! Our passionate staff is committed to 
             creating a fun, safe, and engaging environment for all visitors. From fitness trainers to facility 
             managers, every team member plays a vital role in making your experience enjoyable. Get to know the 
@@ -43,12 +38,12 @@ const people = [
           <ul role="list" className="grid gap-x-5 gap-y-8 sm:grid-cols-2 sm:gap-y-8 xl:col-span-2">
             {people.map((person) => (
               <li key={person.name}>
-                <div className="flex bg-gray-400 items-center gap-x-6 p-3 rounded-2xl border-4">
-                  <img alt="" src={person.imageUrl} className="size-18 object-cover rounded-full border-2 border-black" />
-                  <div className="text-white">
-                    <h3 className="text-lg font-semibold tracking-tight text-gray-900">{person.name}</h3>
-                    <p className="text-sm/6 font-semibold">{person.role}</p>
-                    <a href={`mailto:${person.email}`}>{person.email}</a>
+                <div className="flex bg-white items-center gap-x-6 p-3 rounded-2xl border-3 border-gray-400">
+                  <img alt="" src={person.imageUrl} className="size-35 object-cover rounded-full border-2 border-gray-black" />
+                  <div className="text-blue-900">
+                    <h3 className="text-2xl font-semibold tracking-tight text-red-700">{person.name}</h3>
+                    <p className="text-lg font-semibold">{person.role}</p>
+                    <a className="text-md" href={`mailto:${person.email}`}>{person.email}</a>
                   </div>
                 </div>
               </li>
