@@ -1,10 +1,8 @@
 import Navbar from '../navbar.jsx'
-import useFetch from '../../hooks/useFetch'
 import Footer from '../footer.jsx'
+import EquipmentTable from '../equipmentTable.jsx'
 
 const HomePage = () => {
-
-    const {data,loading} = useFetch("/equipment/countByLocation?locations=Cardio+1,Cardio+2,Cardio+3")
 
     return (
       <>
@@ -19,31 +17,7 @@ const HomePage = () => {
           <div className='flex flex-col justify-center items-center m-10'>
           <img src="/assets/floorplan.jpg" className='border-3 object-fit brightness-90'></img>
           </div>
-      {loading ? ("Loading Please Wait!") : (<>
-      <div className='flex flex-col justify-center items-center'>
-        <h1>Equipment</h1>
-        <table class="table-auto bg-gray-400 m-5 w-200">
-      <thead>
-        <tr>
-          <th>Location</th>
-          <th>Count</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Cardio 1</td>
-          <td>{data[0]}</td>
-        </tr>
-        <tr>
-          <td>Cardio 2</td>
-          <td>{data[1]}</td>
-        </tr>
-        <tr>
-          <td>Cardio 3</td>
-          <td>{data[2]}</td>
-        </tr>
-      </tbody>
-      </table></div></>)}
+      <EquipmentTable/>
       <Footer />
       </>
     )
