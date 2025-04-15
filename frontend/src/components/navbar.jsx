@@ -30,6 +30,9 @@ const toggleMenuDrawer = () => {
         }
     }
 
+const toAdminPortal = () => {
+    window.location.href = 'http://localhost:5174/'
+}
 
     return (
         <nav className="sticky top-0 z-50 py-8 backdrop-blur-xl border-b border-[#003768] bg-opacity-90">
@@ -52,12 +55,29 @@ const toggleMenuDrawer = () => {
                         <Link to='/about'>About</Link>
                         </li>
                         <li>
-                        <Link to='/additional-info'><a>Additional Information</a></Link>
+                        <Link to='/additional-info'>Additional Information</Link>
                         </li>
+                        {user?.role === 'admin' && (
+                        <li>
+                        <button onClick={toAdminPortal} className='uppercase'>Admin Portal</button>
+                        </li>)}
+                        {user?.role === 'maintenance' && (
+                        <li>
+                        <Link to='/maintenance-portal'>Maintenance Portal</Link>
+                        </li>)}
+                        {user?.role === 'employee' && (
+                        <li>
+                        <Link to='/employee-portal'>Employee Portal</Link>
+                        </li>)}
                         </ul>
                         </div>
                     <div className=''>
-                        {user ? user.username : (
+                        {user ? (
+                        <div className="space-x-4 flex items-center">
+                        <span className="text-black font-semibold bg-blue-600 p-2 rounded-2xl">{user.username}</span>
+                        <button className="bg-red-900 text-white px-3 py-2 rounded-md" onClick={handleLogout}>Logout</button>
+                        </div>
+                        ) : (
                     <div className="hidden lg:flex justify-center space-x- items-center">
                     <Link to='/login'>
                     <button className="bg-gradient-to-r from-blue-500 to-blue-700 py-2 px-3 rounded-lg text-xl">Login</button>
@@ -65,7 +85,7 @@ const toggleMenuDrawer = () => {
                     </div>
                         )}
                     </div>
-                    {user && (<button className='bg-red-900' onClick={handleLogout}>Logout</button>)}
+                   {/* {user && (<button className='bg-red-900' onClick={handleLogout}>Logout</button>)} */}
                     <div className="lg:hidden md:flex flex-col justify-end">
                     <button onClick={toggleMenuDrawer}>
                         {menuDrawerUp ? <X /> : <SquareMenu />}
@@ -84,8 +104,25 @@ const toggleMenuDrawer = () => {
                         <li>
                         <Link to='/additional-info'>Additional Information</Link>
                         </li>
+                        {user?.role === 'admin' && (
+                        <li>
+                        <button onClick={toAdminPortal} className='uppercase'>Admin Portal</button>
+                        </li>)}
+                        {user?.role === 'maintenance' && (
+                        <li>
+                        <Link to='/maintenance-portal'>Maintenance Portal</Link>
+                        </li>)}
+                        {user?.role === 'employee' && (
+                        <li>
+                        <Link to='/employee-portal'>Employee Portal</Link>
+                        </li>)}
                         </ul>
-                        {user ? user.username: (
+                        {user ? (
+                        <div className="space-x-4 flex items-center">
+                        <span className="text-black font-semibold bg-blue-600 p-2 rounded-2xl">{user.username}</span>
+                        <button className="bg-red-900 text-white px-3 py-2 rounded-md" onClick={handleLogout}>Logout</button>
+                        </div>
+                        ) : (
                         <div className="space-x-6 flex py-2">
                         <Link to='/login'>
                         <button className="bg-gradient-to-r from-blue-500 to-blue-700 py-2 px-3 rounded-md">Login</button>
@@ -94,7 +131,7 @@ const toggleMenuDrawer = () => {
                         )}
                     </div>)}
                 </div>
-        </nav>
+            </nav>
     )
 }
 

@@ -33,13 +33,13 @@ export const login = async (req,res,next) => {
     const correctPassword = await bycrypt.compare(req.body.password, user.password)
     if(!correctPassword) {return (next(newError(400, "Incorrect Password or Username")))}
     
-    const token = jwt.sign({id:user.id, isAdmin: user.isAdmin}, process.env.JWT)
+    const token = jwt.sign({id:user.id, role: user.role}, process.env.JWT)
     
 
-    const { password, isAdmin, isEmployee, isMaintenance, ...otherDetails } = user.dataValues
+    const { password, ...otherDetails } = user.dataValues
     res.cookie("access_token", token,{
         httpOnly: true
-    }).status(200).json({details:{...otherDetails}, isAdmin})
+    }).status(200).json({details:{...otherDetails}, role: user.role})
     } catch (err) {
         next(err)
         }

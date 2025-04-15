@@ -1,8 +1,8 @@
-import {React, useState, useContext} from "react";
+import {React, useState, useContext} from "react"
 import {User, Lock, ArrowLeft} from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios"
-import { AuthContext } from "../../context/authContext.jsx";
+import { AuthContext } from "../../context/authContext.jsx"
 
 const Login = () => {
 
@@ -25,42 +25,61 @@ const handleClick = async e => {
   console.log(credentials)
   try{
     const res = await axios.post("http://localhost:5000/auth/login", credentials)
-    dispatch({type:"LOGIN_SUCCESS", payload: res.data.details})
-    navigate("/")
+    
+    const user = res.data.details
+    const role = user.role
+    
+    console.log("Logged in as:", user);
+    dispatch({type: "LOGIN_SUCCESS", payload: user})
+    switch(role) {
+      case'admin':
+      window.location.href = 'http://localhost:5174/'
+      break
+      case 'employee':
+      navigate('/')
+      break
+      case 'maintenance':
+        navigate('/')
+      break
+      default:
+        dispatch({type:"LOGIN_FAILURE", payload: {message: "Unknown Role"} })
+    }
   } catch(err) {
-    dispatch({type:"LOGIN_FAILURE", payload:err.response.data})
-  }
+      dispatch({type:"LOGIN_FAILURE", payload:err.response.data})
+    }
 }
 
   return (
-<div className="login-page min-w-screen min-h-screen bg-cover bg-[url('/assets/background.jpg')]">
-<Link to="/"><button className="back flex text-white mx-4 py-4"><ArrowLeft />Back to Home </button></Link>
-<div className="flex justify-center">
-    <div className="flex bg-gray-700 rounded-lg justify-center items-center  max-w-md w-full shadow-2xl p-4">
-    <form className="p-5">
-        <img src="/assets/logo.png" className="w-40 h-32 mb-6 ml-14"/>
-        <h1 className="text-center font-semibold">Login</h1>
-        <div className='inputs p-4'>
-        <div className="input flex mb-4 p-4 bg-gray-300 text-black rounded-2xl">
-        <User />
-        <input id='username' className="placeholder-black" placeholder="Username" required onChange={handleChange}/>
+<>
+<div className=" bg-cover bg-[url('/assets/background.jpg')] h-screen w-screen flex justify-center items-center">
+<div className=" bg-gray-400 rounded-lg justify-center items-center max-w-md w-full shadow-3xl p-8">
+<Link to="/"><button className="flex font-semibold text-start pb-5"><ArrowLeft />Back to Home </button></Link>
+    <div className="w-full flex flex-col justify-center items-center">
+    <img src="/assets/logo.png" className="w-50 h-35"/>
+    <form className="p-4 items-center justify-center">
+        <h1 className="text-center font-semibold text-lg">Login</h1>
+        <div className='p-4 grid grid-cols-1 gap-4'>
+        <div className="input flex p-4 bg-gray-300 text-black rounded-2xl">
+        <User className='text-gray-400'/>
+        <input id='username' className="placeholder-gray-400 focus:outline-hidden ml-2 w-full" placeholder="Username" required onChange={handleChange}/>
         </div>
-        <div className="input flex mb-4 p-4 bg-gray-300 text-black rounded-2xl">
-        <Lock />
-        <input id='password' className="placeholder-black" placeholder="Password" required onChange={handleChange}/>
+        <div className="input flex p-4 bg-gray-300 text-black rounded-2xl">
+        <Lock className='text-gray-400' />
+        <input id='password' className="placeholder-gray-400 focus:outline-hidden ml-2 w-full" placeholder="Password" required onChange={handleChange}/>
         </div>
         </div>
         <div className='remember pb-10'>
-            <label><input type='checkbox'/>Remember Me</label>
+            <label><input id="default-checkbox" type='checkbox'/>Remember Me</label>
         </div>
         <div className="bg-blue-500 mx-auto rounded-2xl">
-        <button disabled={loading} onClick={handleClick} type='submit' className="text-center w-full p-2">Login</button>
-       {error && <span>{error.message}</span>}
-       </div>
+        <button disabled={loading} onClick={handleClick} type='submit' className="text-center w-full p-2 text-white font-semibold">Login</button>
+        {error && <span>{error.message}</span>}
+        </div>
     </form>
     </div>
     </div>
 </div>
+</>
   )
 }
 
