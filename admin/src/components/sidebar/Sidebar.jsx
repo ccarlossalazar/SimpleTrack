@@ -98,7 +98,7 @@ const Sidebar = () => {
           </li>
           <li>
             <ExitToAppIcon className="icon" />
-            <button onClick={handleLogout}>Logout</button>
+            <span><button onClick={handleLogout}>Logout</button></span>
           </li>
         </ul>
       </div>
