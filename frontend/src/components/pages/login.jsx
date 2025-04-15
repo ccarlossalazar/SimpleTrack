@@ -28,6 +28,7 @@ const handleClick = async e => {
     
     const user = res.data.details
     const role = user.role
+
     
     console.log("Logged in as:", user);
     dispatch({type: "LOGIN_SUCCESS", payload: user})
@@ -36,14 +37,15 @@ const handleClick = async e => {
       window.location.href = 'http://localhost:5174/'
       break
       case 'employee':
-      navigate('/')
+      navigate('/employee-portal')
       break
       case 'maintenance':
-        navigate('/')
+        navigate('/maintenance-portal')
       break
       default:
         dispatch({type:"LOGIN_FAILURE", payload: {message: "Unknown Role"} })
     }
+    window.location.reload()
   } catch(err) {
       dispatch({type:"LOGIN_FAILURE", payload:err.response.data})
     }
@@ -58,6 +60,11 @@ const handleClick = async e => {
     <img src="/assets/logo.png" className="w-50 h-35"/>
     <form className="p-4 items-center justify-center">
         <h1 className="text-center font-semibold text-lg">Login</h1>
+        {error && (
+          <div className="bg-white rounded-xl p-2 mt-2 text-center text-red-600">
+          <span>{error.message}
+          </span>
+          </div>)}
         <div className='p-4 grid grid-cols-1 gap-4'>
         <div className="input flex p-4 bg-gray-300 text-black rounded-2xl">
         <User className='text-gray-400'/>
@@ -73,7 +80,6 @@ const handleClick = async e => {
         </div>
         <div className="bg-blue-500 mx-auto rounded-2xl">
         <button disabled={loading} onClick={handleClick} type='submit' className="text-center w-full p-2 text-white font-semibold">Login</button>
-        {error && <span>{error.message}</span>}
         </div>
     </form>
     </div>

@@ -12,9 +12,8 @@ const toggleMenuDrawer = () => {
         setMenuDrawerUp(!menuDrawerUp)
     }
 
-  const { user } = useContext(AuthContext)
+  const { user, dispatch } = useContext(AuthContext)
 
-  const {dispatch} = useContext(AuthContext)
   const navigate = useNavigate()
 
  const handleLogout = () => {
@@ -119,7 +118,7 @@ const toAdminPortal = () => {
                         </ul>
                         {user ? (
                         <div className="space-x-4 flex items-center">
-                        <span className="text-black font-semibold bg-blue-600 p-2 rounded-2xl">{user.username}</span>
+                        <span className="text-black font-semibold bg-blue-600 p-2 circle">{user.username}</span>
                         <button className="bg-red-900 text-white px-3 py-2 rounded-md" onClick={handleLogout}>Logout</button>
                         </div>
                         ) : (
