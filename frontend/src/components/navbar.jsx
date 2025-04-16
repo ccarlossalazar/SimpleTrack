@@ -74,7 +74,7 @@ const toAdminPortal = () => {
                         {user ? (
                         <div className="space-x-4 flex items-center">
                         <span className="text-black font-semibold bg-blue-600 p-2 rounded-2xl">{user.username}</span>
-                        <button className="bg-red-900 text-white px-3 py-2 rounded-md" onClick={handleLogout}>Logout</button>
+                        <button className=" bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-md" onClick={handleLogout}>Logout</button>
                         </div>
                         ) : (
                     <div className="hidden lg:flex justify-center space-x- items-center">
@@ -84,7 +84,6 @@ const toAdminPortal = () => {
                     </div>
                         )}
                     </div>
-                   {/* {user && (<button className='bg-red-900' onClick={handleLogout}>Logout</button>)} */}
                     <div className="lg:hidden md:flex flex-col justify-end">
                     <button onClick={toggleMenuDrawer}>
                         {menuDrawerUp ? <X /> : <SquareMenu />}
@@ -93,33 +92,33 @@ const toAdminPortal = () => {
                     </div>
                     {menuDrawerUp && (
                     <div className="fixed right-0 z-20 bg-white w-full p-12 flex flex-col justify-center items-center lg:hidden">
-                        <ul className="py-3 uppercase font-semibold">
-                        <li>
+                        <ul className="py-3 uppercase font-semibold space-y-2 text-[#003768]">
+                        <li className='hover:overline'>
                         <Link to='/events'>Event Calendar</Link>
                         </li>
-                        <li>
+                        <li className='hover:overline'>
                         <Link to='/about'>About</Link>
                         </li>
-                        <li>
+                        <li className='hover:overline'>
                         <Link to='/additional-info'>Additional Information</Link>
                         </li>
                         {user?.role === 'admin' && (
-                        <li>
+                        <li className='hover:overline'>
                         <button onClick={toAdminPortal} className='uppercase'>Admin Portal</button>
                         </li>)}
                         {user?.role === 'maintenance' && (
-                        <li>
+                        <li className='hover:overline'>
                         <Link to='/maintenance-portal'>Maintenance Portal</Link>
                         </li>)}
                         {user?.role === 'employee' && (
-                        <li>
+                        <li className='hover:overline'>
                         <Link to='/employee-portal'>Employee Portal</Link>
                         </li>)}
                         </ul>
                         {user ? (
                         <div className="space-x-4 flex items-center">
                         <span className="text-black font-semibold bg-blue-600 p-2 circle">{user.username}</span>
-                        <button className="bg-red-900 text-white px-3 py-2 rounded-md" onClick={handleLogout}>Logout</button>
+                        <button className="bg-red-600 text-white px-3 py-2 rounded-md hover:bg-red-700" onClick={handleLogout}>Logout</button>
                         </div>
                         ) : (
                         <div className="space-x-6 flex py-2">

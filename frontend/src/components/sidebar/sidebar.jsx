@@ -81,10 +81,12 @@ const Sidebar = () => {
             <AccountCircleOutlinedIcon className="text-[#003768]" />
             {user ? (<span>{user.username}</span>) : null}
           </li>
+          <Link to='/'>
           <li>
             <KeyboardReturnIcon className="text-[#003768]" />
-            <Link to='/'><span>Back to MainPage</span></Link>
+            <span>Back to MainPage</span>
           </li>
+          </Link>
           <li>
             <ExitToAppIcon className="text-[#003768]" />
             <span><button onClick={handleLogout}>Logout</button></span>

@@ -94,7 +94,7 @@ const Sidebar = () => {
           <p className="title">USER</p>
           <li>
             <AccountCircleOutlinedIcon className="icon" />
-            <span>Profile</span>
+            {user ? (<span>{user.username}</span>) : <span>Profile</span>}
           </li>
           <li>
             <ExitToAppIcon className="icon" />
