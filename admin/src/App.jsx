@@ -40,8 +40,8 @@ function App() {
               />
             </Route>
             <Route path="products">
-              <Route index element={<List />} />
-              <Route path=":productId" element={<ProtectedRoute><Single /></ProtectedRoute>} />
+              <Route index element={<List/>} />
+              <Route path=":productId" element={<ProtectedRoute><Single/></ProtectedRoute>} />
               <Route
                 path="new"
                 element={<ProtectedRoute><New inputs={productInputs} title="Add New Product" /></ProtectedRoute>}

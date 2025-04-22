@@ -1,14 +1,26 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "../../datatablesource";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import useFetch from '../../hooks/useFetch.js'
+import axios from 'axios'
 
 const Datatable = () => {
-  const [data, setData] = useState(userRows);
+  const location = useLocation()
+  const path = location.pathname.split("/")[1]
+  const [list, setList] = useState([])
+  const {data, loading, error} = useFetch(`http://localhost:5000/${path}`) 
 
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+  useEffect(()=> {
+    console.log(data)
+    setList(data)
+  }, [data])
+  const handleDelete = async (id) => {
+    try{ 
+    await axios.delete(`http://localhost:5000/${path}/${id}`)
+    setList(list.filter((item) => item.id !== id));
+  }catch(error){}
   };
 
   const actionColumn = [
@@ -43,11 +55,12 @@ const Datatable = () => {
       </div>
       <DataGrid
         className="datagrid"
-        rows={data}
+        rows={list}
         columns={userColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
         checkboxSelection
+        getRowId={(row)=>row.id}
       />
     </div>
   );
