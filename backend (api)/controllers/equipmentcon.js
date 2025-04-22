@@ -3,7 +3,7 @@ import Equipment from "../models/Equipment.js";
 
 
 export const createEquipment = async (req, res) => {
-    const newEquipment = new Equipment(req.body)
+    const newEquipment = new Equipment({...req.body})
     try{
         const savedEquipment = await newEquipment.save()
         res.status(200).json(savedEquipment)
@@ -41,6 +41,7 @@ export const deleteEquipment = async (req,res,next)=>{
 export const getEquipment = async (req,res,next)=>{
     try {
         const equipment = await Equipment.findByPk(req.params.id)
+
         res.status(200).json(equipment)
     } catch (err) {
         next(err)

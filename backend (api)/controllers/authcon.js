@@ -9,13 +9,8 @@ try{
     const hashedPassword = bycrypt.hashSync(req.body.password, salt)
 
     const newUser = new Users ({
-        username: req.body.username,
-        email: req.body.email,
+        ...req.body,
         password: hashedPassword,
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
-        role: req.body.role,
-        id: req.body.id
     })
 
     await newUser.save()

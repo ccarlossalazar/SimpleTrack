@@ -21,7 +21,11 @@ const Equipment = sequelize.define('Equipment', {
     equipment_condition: {
         type: DataTypes.ENUM('excellent', 'good', 'fair', 'poor'),
         allowNull: false
-    }
+    },
+    img: {
+        type: DataTypes.STRING(255),
+        allowNull: true
+    },
 })
 
 export default Equipment
