@@ -1,5 +1,5 @@
 
-import Logo from '/src/assets/logo.png'
+//import Logo from '/src/assets/logo.png'
 import { SquareMenu, X } from "lucide-react"
 import { useState, useContext } from "react"
 import {Link, useNavigate} from 'react-router-dom'
@@ -34,18 +34,18 @@ const toAdminPortal = () => {
 }
 
     return (
-        <nav className="sticky top-0 z-50 py-8 backdrop-blur-xl border-b border-[#003768] bg-opacity-90">
+        <nav className="sticky top-0 z-50 py-8 border-b border-[#003768] bg-opacity-40 backdrop-blur-3xl">
             <div className="px-4 mx-auto relative text-sm">
                 <div className="flex items-center">
                     <div className='flex justify-between items-center'>
                     <Link to='/'>
                     <div className="flex items-center flex-shrink-0">
-                    <button><img className="h-15 w-15" src={Logo} alt="logo"/></button>
-                    <span className="text-2xl tracking-tight font-bold font-serif">SimpleTrack</span>
+                    <img className="h-7 w-7" src='https://www.logoai.com/oss/icons/2021/10/27/ppfWwJiPVMPOEPM.png' alt="logo"/>
+                    <span className="text-2xl tracking-tight font-bold font-serif bg-gradient-to-r from-blue-900 via-blue-600 to-blue-400 inline-block text-transparent bg-clip-text ">impleTrack</span>
                     </div>
                     </Link>
                     </div>
-                    <div className="uppercase font-bold">
+                    <div className="uppercase font-bold w-full">
                         <ul className="hidden lg:flex ml-14 space-x-12 text-lg text-[#003768]">
                         <li>
                         <Link to='/events'>Event Calendar</Link>
@@ -55,6 +55,9 @@ const toAdminPortal = () => {
                         </li>
                         <li>
                         <Link to='/additional-info'>Additional Information</Link>
+                        </li>
+                       <li>
+                        <Link to='/work-order'>Work Order</Link>
                         </li>
                         {user?.role === 'admin' && (
                         <li>
@@ -70,14 +73,14 @@ const toAdminPortal = () => {
                         </li>)}
                         </ul>
                         </div>
-                    <div className=''>
+                    <div className='hidden lg:flex flex-col justify-end'>
                         {user ? (
                         <div className="space-x-4 flex items-center">
-                        <span className="text-black font-semibold bg-blue-600 p-2 rounded-2xl">{user.username}</span>
+                        <span className="text-white font-semibold bg-blue-600 p-2 rounded-2xl">{user.username[0]}{user.username[1]}</span>
                         <button className=" bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-md" onClick={handleLogout}>Logout</button>
                         </div>
                         ) : (
-                    <div className="hidden lg:flex justify-center space-x- items-center">
+                    <div className="hidden lg:flex items-end space-x-">
                     <Link to='/login'>
                     <button className="bg-gradient-to-r from-blue-500 to-blue-700 py-2 px-3 rounded-lg text-xl">Login</button>
                     </Link>

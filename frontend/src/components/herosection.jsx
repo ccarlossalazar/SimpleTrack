@@ -50,9 +50,10 @@ import useFetch from "../hooks/useFetch"
               <div className="absolute inset-px rounded-lg bg-gray-300"></div>
               <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)]">
                 <div className="px-8 pt-8 sm:px-10 sm:pt-10">
-                  <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">Security</p>
+                  <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">Free Weights</p>
                   <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
-                    Morbi viverra dui mi arcu sed. Tellus semper adipiscing suspendisse semper morbi.
+                  Our facility offers a number of free weight options for all needs. We have squat racks and bench racks located throguhout the 
+                  facility as well as a dumbbell rack from weights ranging from 5lbs to 100lbs.
                   </p>
                 </div>
                 <div className="justify-center flex flex-1 items-center max-lg:py-6 lg:pb-2">
@@ -70,7 +71,7 @@ import useFetch from "../hooks/useFetch"
               <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-b-[calc(2rem+1px)] lg:rounded-r-[calc(2rem+1px)]">
                 <div className="px-8 pt-8 pb-3 sm:px-10 sm:pt-10 sm:pb-0">
                   <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
-                    Powerful APIs
+                    Cardio Equipment/Rockwall
                   </p>
                   <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
                     Variety of cardio machines. Including Ellipticals, Treadmils, Stair Climbers and More.

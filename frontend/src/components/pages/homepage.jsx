@@ -1,4 +1,5 @@
 import Navbar from '../navbar.jsx'
+import FloorPlan from '../layout/floorplan.jsx'
 import Footer from '../footer.jsx'
 import EquipmentTable from '../equipmentTable.jsx'
 
@@ -12,11 +13,11 @@ const HomePage = () => {
             Saint Mary's Campus Recreation
           </p>
           <img src="/assets/logo.png" className='pb-10 size-fit'/>
-          </div>
-          <h1 className='text-5xl font-semibold text-center'>Layout</h1>
-          <div className='flex flex-col justify-center items-center m-10'>
-          <img src="/assets/floorplan.jpg" className='border-3 object-fit brightness-90'></img>
-          </div>
+      </div>
+      <h1 className='text-5xl font-semibold text-center'>Layout</h1>
+      <div className='flex justify-center'>
+      <FloorPlan />
+      </div>
       <EquipmentTable/>
       <Footer />
       </>

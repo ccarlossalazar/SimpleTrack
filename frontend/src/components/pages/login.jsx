@@ -27,11 +27,12 @@ const handleClick = async e => {
     const res = await axios.post("http://localhost:5000/auth/login", credentials)
     
     const user = res.data.details
-    const role = user.role
+    const {role} = user
 
     
     console.log("Logged in as:", user);
     dispatch({type: "LOGIN_SUCCESS", payload: user})
+    window.location.reload()
     switch(role) {
       case'admin':
       window.location.href = 'http://localhost:5174/'
@@ -45,7 +46,6 @@ const handleClick = async e => {
       default:
         dispatch({type:"LOGIN_FAILURE", payload: {message: "Unknown Role"} })
     }
-    window.location.reload()
   } catch(err) {
       dispatch({type:"LOGIN_FAILURE", payload:err.response.data})
     }
