@@ -7,8 +7,9 @@ import EmployeePortal from './components/pages/employee.jsx'
 import MaintenacePortal from './components/pages/maintenance.jsx'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Equipment from './components/sidebar/equipment.jsx'
-import WorkOrder from './components/workOrderForm.jsx'
+import WorkOrder from './components/pages/workOrderForm.jsx'
 import WorkOrders from './components/sidebar/workOrders.jsx'
+import Logs from './components/sidebar/logs.jsx'
 
 function App() {
   return (
@@ -24,9 +25,10 @@ function App() {
       <Route path="/maintenance-portal" element={<MaintenacePortal />} />
 
     {/*Routes for Sidebar component*/}
-      <Route path="/additional-info" element={<Additional />} />
       <Route path="/work-orders" element={<WorkOrders />} />
       <Route path="/equipment" element={<Equipment />} />
+      <Route path="/maintenance" element={<Logs />} />
+
       </Routes>
       </Router>
   );

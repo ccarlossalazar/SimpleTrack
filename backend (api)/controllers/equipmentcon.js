@@ -2,7 +2,7 @@ import Equipment from "../models/Equipment.js";
 
 
 
-export const createEquipment = async (req, res) => {
+export const createEquipment = async (req, res, next) => {
     const newEquipment = new Equipment({...req.body})
     try{
         const savedEquipment = await newEquipment.save()

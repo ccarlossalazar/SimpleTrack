@@ -1,14 +1,19 @@
 import Sidebar from '../sidebar/sidebar.jsx'
+import Navbar from '../navbar/portalnavbar.jsx'
+
 
 
 const EmployeePortal = () => {
     return(
-    <>
-    <div className="bg-blue-300 flex">
+    <div className='flex min-h-screen w-full overflow-hidden'>
     <Sidebar/>
-    <h1>Employee Dashboard</h1>
+    <div className='flex flex-col flex-1'>        
+    <Navbar/>
+    <div className='p-6 flex-1 overflow-auto'>
+        <h1>Employee Portal</h1>
     </div>
-    </>
+    </div>
+    </div>
     )
 }
 

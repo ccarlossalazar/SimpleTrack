@@ -7,17 +7,14 @@ const WorkOrder = sequelize.define('WorkOrder', {
     primaryKey: true,
     autoIncrement: true,
   },
-  admin_id: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-  },
   equipment_id: {
     type: DataTypes.CHAR(8),
     allowNull: false,
   },
   status: {
     type: DataTypes.ENUM('requested', 'approved', 'in progress', 'completed', 'rejected'),
-    allowNull: false,
+    allowNull: true,
+    defaultValue: "in progress"
   },
   cost: {
     type: DataTypes.DECIMAL(10, 2),
@@ -25,14 +22,19 @@ const WorkOrder = sequelize.define('WorkOrder', {
   },
   description: {
     type: DataTypes.TEXT,
+    allowNull: false,
+  },
+  location: {
+    type: DataTypes.ENUM('Cardio 1', 'Cardio 2', 'Cardio 3'),
+    allowNull: false
   },
 }, {
     tableName: 'work_orders',
   });
 
 WorkOrder.associate = (models) => {
-  WorkOrder.belongsTo(models.User, { foreignKey: 'admin_id' });  // admin_id references the User model
-  WorkOrder.belongsTo(models.Equipment, { foreignKey: 'equipment_id' });  // equipment_id references the Equipment model
+  WorkOrder.belongsTo(models.Equipment, { foreignKey: 'equipment_id',   onDelete: 'CASCADE', 
+  })
 }
 
 export default WorkOrder

@@ -56,9 +56,10 @@ const toAdminPortal = () => {
                         <li>
                         <Link to='/additional-info'>Additional Information</Link>
                         </li>
+                        {user?.role !== 'admin' && (
                        <li>
                         <Link to='/work-order'>Work Order</Link>
-                        </li>
+                        </li>)}
                         {user?.role === 'admin' && (
                         <li>
                         <button onClick={toAdminPortal} className='uppercase'>Admin Portal</button>
@@ -76,7 +77,12 @@ const toAdminPortal = () => {
                     <div className='hidden lg:flex flex-col justify-end'>
                         {user ? (
                         <div className="space-x-4 flex items-center">
-                        <span className="text-white font-semibold bg-blue-600 p-2 rounded-2xl">{user.username[0]}{user.username[1]}</span>
+                        <div className="flex space-x-3 flex-col justify-center items-center">
+                        <img src={user.img || 'https://static.vecteezy.com/system/resources/previews/020/911/740/non_2x/user-profile-icon-profile-avatar-user-icon-male-icon-face-icon-profile-icon-free-png.png'}
+                        className="w-10 h-10 rounded-full outline-2"
+                        />
+                        <span className="text-black font-semibold">{user.username}</span>
+                        </div>
                         <button className=" bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-md" onClick={handleLogout}>Logout</button>
                         </div>
                         ) : (
@@ -88,7 +94,7 @@ const toAdminPortal = () => {
                         )}
                     </div>
                     <div className="lg:hidden md:flex flex-col justify-end">
-                    <button onClick={toggleMenuDrawer}>
+                    <button onClick={toggleMenuDrawer} className="hover:text-blue-400">
                         {menuDrawerUp ? <X /> : <SquareMenu />}
                     </button>
                     </div>
@@ -105,9 +111,13 @@ const toAdminPortal = () => {
                         <li className='hover:overline'>
                         <Link to='/additional-info'>Additional Information</Link>
                         </li>
-                        {user?.role === 'admin' && (
+                        {user?.role !== 'admin' && (
                         <li className='hover:overline'>
-                        <button onClick={toAdminPortal} className='uppercase'>Admin Portal</button>
+                        <Link to='/work-order'>Work Order</Link>
+                        </li>)}
+                        {user?.role === 'admin' && (
+                        <li className=''>
+                        <button onClick={toAdminPortal} className='uppercase hover:overline'>Admin Portal</button>
                         </li>)}
                         {user?.role === 'maintenance' && (
                         <li className='hover:overline'>
@@ -119,8 +129,13 @@ const toAdminPortal = () => {
                         </li>)}
                         </ul>
                         {user ? (
-                        <div className="space-x-4 flex items-center">
-                        <span className="text-black font-semibold bg-blue-600 p-2 circle">{user.username}</span>
+                        <div className="space-x-4 flex items-center justify-center">
+                        <div className="flex space-x-3 justify-center items-center">
+                        <img src={user.img || 'https://static.vecteezy.com/system/resources/previews/020/911/740/non_2x/user-profile-icon-profile-avatar-user-icon-male-icon-face-icon-profile-icon-free-png.png'}
+                        className="w-10 h-10 rounded-full outline-2"
+                        />
+                        <span className="text-black font-semibold">{user.username}</span>
+                        </div>
                         <button className="bg-red-600 text-white px-3 py-2 rounded-md hover:bg-red-700" onClick={handleLogout}>Logout</button>
                         </div>
                         ) : (

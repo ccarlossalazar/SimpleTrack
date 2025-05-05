@@ -1,12 +1,14 @@
 import "./sidebar.scss";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import CreditCardIcon from "@mui/icons-material/CreditCard";
+import HandymanIcon from "@mui/icons-material/Handyman";
 import StoreIcon from "@mui/icons-material/Store";
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
+import PendingActionsIcon from '@mui/icons-material/PendingActions';
 import InsertChartIcon from "@mui/icons-material/InsertChart";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
+import BookIcon from "@mui/icons-material/Book";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
@@ -28,6 +30,10 @@ const Sidebar = () => {
         }
     }
 
+    const mainPage = () => {
+      window.location.href = 'http://localhost:5173/'
+    }
+
   return (
     <div className="sidebar">
       <div className="top">
@@ -37,7 +43,7 @@ const Sidebar = () => {
       </div>
       <hr />
       <div className="center">
-        <ul>
+        <ul className="text-[#003768]">
           <p className="title">MAIN</p>
           <li>
             <DashboardIcon className="icon" />
@@ -56,27 +62,48 @@ const Sidebar = () => {
               <span>Equipment</span>
             </li>
           </Link>
+          <Link to='/workorders'>
           <li>
-            <CreditCardIcon className="icon" />
-            <span>Orders</span>
+            <HandymanIcon className="icon" />
+            <span>Work Orders</span>
           </li>
+          </Link>
+          <Link to='/requests'>
+          <li>
+            <PendingActionsIcon className="icon" />
+            <span>Pending Requests</span>
+          </li>
+          </Link>
+          <Link to='/maintenance'>
+          <li>
+            <BookIcon className="icon" />
+            <span>Logs</span>
+          </li>
+          </Link>
           <p className="title">USEFUL</p>
+          <Link to='/stats'>
           <li>
             <InsertChartIcon className="icon" />
             <span>Stats</span>
           </li>
+          </Link>
+          <Link to='/notifications'>
           <li>
             <NotificationsNoneIcon className="icon" />
             <span>Notifications</span>
           </li>
-          <li>
-            <PsychologyOutlinedIcon className="icon" />
-            <span>Logs</span>
-          </li>
+          </Link>
           <p className="title">USER</p>
           <li>
             <AccountCircleOutlinedIcon className="icon" />
-            {user ? (<span>{user.username}</span>) : <span>Profile</span>}
+            {user ? (
+              <span>{user.username}</span>
+              ) 
+              : <span>Profile</span>}
+          </li>
+          <li>
+            <KeyboardReturnIcon className="icon" />
+            <span><button onClick={mainPage}>Back to site</button></span>
           </li>
           <li>
             <ExitToAppIcon className="icon" />

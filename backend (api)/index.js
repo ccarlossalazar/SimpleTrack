@@ -5,8 +5,8 @@ import authRoute from "./routes/auth.js"
 import usersRoute from "./routes/users.js"
 import equipmentRoute from "./routes/equipment.js"
 import maintenanceRoute from "./routes/maintenance.js"
-import reportsRoute from "./routes/reports.js"
 import workordersRoute from "./routes/workorders.js"
+import requestsRoute from "./routes/requests.js"
 import cookieParser from "cookie-parser"
 import cors from 'cors'
 
@@ -31,8 +31,8 @@ app.use("/auth", authRoute)
 app.use("/users", usersRoute)
 app.use("/equipment", equipmentRoute)
 app.use("/maintenance", maintenanceRoute)
-app.use("/reports", reportsRoute)
 app.use("/workorders", workordersRoute)
+app.use("/requests", requestsRoute)
 
 app.use((err,req,res,next)=>{
     const errorStatus = err.status || 500

@@ -10,7 +10,7 @@ imageMapResize()
 
     return (
         <div className='w-200 h-200'>
-<img src="/assets/floorplan.jpg" usemap="#image-map" style={{width:"100%", height:"auto"}}/>
+<img src="/assets/floorplan.jpg" useMap="#image-map" style={{width:"100%", height:"auto"}}/>
 
 <map name="image-map">
     <area target="" alt="Fitness Area 2" title="Fitness Area 2" href="#Fit2" coords="180,1458,228,1380,417,1303,548,1260,677,1246,731,1249,788,1292,797,1535,217,1538,188,1500" shape="poly"/>

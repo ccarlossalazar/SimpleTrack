@@ -15,16 +15,12 @@ const Widget = ({ type }) => {
   switch (type) {
     case "user":
       data = {
-        title: "USERS",
+        title: "PENDING REQUESTS",
         isMoney: false,
         link: "See all users",
         icon: (
           <PersonOutlinedIcon
-            className="icon"
-            style={{
-              color: "crimson",
-              backgroundColor: "rgba(255, 0, 0, 0.2)",
-            }}
+            className="text-red-500"
           />
         ),
       };
@@ -36,40 +32,29 @@ const Widget = ({ type }) => {
         link: "View all orders",
         icon: (
           <ShoppingCartOutlinedIcon
-            className="icon"
-            style={{
-              backgroundColor: "rgba(218, 165, 32, 0.2)",
-              color: "goldenrod",
-            }}
+            className="text-yellow-500"
           />
         ),
       };
       break;
     case "earning":
       data = {
-        title: "EARNINGS",
-        isMoney: true,
+        title: "EQUIPMENT COUNT",
         link: "View net earnings",
         icon: (
           <MonetizationOnOutlinedIcon
-            className="icon"
-            style={{ backgroundColor: "rgba(0, 128, 0, 0.2)", color: "green" }}
+            className="text-green-500"
           />
         ),
       };
       break;
     case "balance":
       data = {
-        title: "BALANCE",
-        isMoney: true,
+        title: "WORK ORDERS",
         link: "See details",
         icon: (
           <AccountBalanceWalletOutlinedIcon
-            className="icon"
-            style={{
-              backgroundColor: "rgba(128, 0, 128, 0.2)",
-              color: "purple",
-            }}
+            className="text-purple-500"
           />
         ),
       };
@@ -88,13 +73,9 @@ const Widget = ({ type }) => {
         <span className="link">{data.link}</span>
       </div>
       <div className="right">
-        <div className="percentage positive">
-          <KeyboardArrowUpIcon />
-          {diff} %
         </div>
         {data.icon}
       </div>
-    </div>
   );
 };
 

@@ -36,7 +36,7 @@ const Sidebar = () => {
      const dashboardLink = dashboardRoutes[user?.role] || '/'
   
      return (
-    <div className="sidebar h-screen bg-white flex flex-col max-w-xs w-full">
+    <div className="sidebar h-screen bg-white flex flex-col max-w-s border-2 border-gray-200">
       <div className="top">
         <Link to={dashboardLink} style={{ textDecoration: "none" }}>
           <span className="text-[#003768] font-bold text-2xl">SimpleTrack</span>
@@ -53,8 +53,6 @@ const Sidebar = () => {
           </li>
           </Link>
           <p className="title">LISTS</p>
-          <Link to="/users" style={{ textDecoration: "none" }}>
-          </Link>
           <Link to="/equipment" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="text-[#003768]" />
@@ -68,10 +66,12 @@ const Sidebar = () => {
           </li>
           </Link>
           <p className="title">SERVICE</p>
+          <Link to='/maintenance'>
           <li>
             <PsychologyOutlinedIcon className="text-[#003768]" />
-            <span>Work Order Logs</span>
+            <span>Maintenance Logs</span>
           </li>
+          </Link>
           <li>
             <NotificationsNoneIcon className="text-[#003768]" />
             <span>Notifications</span>

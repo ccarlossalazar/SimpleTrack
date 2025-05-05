@@ -2,6 +2,7 @@
 
   .top {
     height: 50px;
+    width: 12rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -37,7 +38,7 @@
         cursor: pointer;
 
         &:hover {
-          background-color: #ece8ff;
+          background-color: #cdd8f8;
         }
 
         span{

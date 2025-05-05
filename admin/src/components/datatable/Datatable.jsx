@@ -1,27 +1,41 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../../datatablesource";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useFetch from '../../hooks/useFetch.js'
 import axios from 'axios'
+import ConfirmDelete from "./confirmation.jsx";
 
-const Datatable = () => {
+const Datatable = ({columns}) => {
   const location = useLocation()
   const path = location.pathname.split("/")[1]
   const [list, setList] = useState([])
   const {data, loading, error} = useFetch(`http://localhost:5000/${path}`) 
+  const [openMessage, setOpen] = useState(false)
+  const [current, setCurrent] = useState(null)
 
   useEffect(()=> {
     console.log(data)
     setList(data)
   }, [data])
-  const handleDelete = async (id) => {
+  
+  const handleDelete = async () => {
     try{ 
-    await axios.delete(`http://localhost:5000/${path}/${id}`)
-    setList(list.filter((item) => item.id !== id));
+    await axios.delete(`http://localhost:5000/${path}/${current}`)
+    setList(list.filter((item) => item.id !== current));
   }catch(error){}
-  };
+  setOpen(false)
+  setCurrent(null)
+  }
+
+  const confirmDelete = async (id) => {
+    setCurrent(id)
+    setOpen(true)
+  }
+
+  const cancelDelete = async () => {
+    setOpen(false)
+  }
 
   const actionColumn = [
     {
@@ -31,36 +45,46 @@ const Datatable = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
+            <Link to={`/${path}/${params.row.id}`} style={{ textDecoration: "none" }}>
+              <div className="viewButton hover:bg-blue-200">View</div>
             </Link>
             <div
-              className="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
+              className="deleteButton hover:bg-red-200"
+              onClick={() => confirmDelete(params.row.id)}
             >
               Delete
             </div>
+           {path === "requests" && <Link to={`/requests/new/${params.row.id}`}><div className="acceptButton hover:bg-green-200">Accept</div></Link>}
           </div>
         );
       },
     },
   ];
+
+  
   return (
     <div className="datatable">
-      <div className="datatableTitle">
-        Add New User
-        <Link to="/users/new" className="link">
+      <div className="datatableTitle uppercase">
+        {path}
+        <Link to={`/${path}/new`} className="link hover:bg-green-100">
           Add New
         </Link>
       </div>
       <DataGrid
         className="datagrid"
         rows={list}
-        columns={userColumns.concat(actionColumn)}
+        columns={columns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
         checkboxSelection
         getRowId={(row)=>row.id}
+      />
+
+      <ConfirmDelete
+        open={openMessage}
+        message="Are you sure?"
+        onConfirm={handleDelete}
+        onCancel={cancelDelete}
       />
     </div>
   );

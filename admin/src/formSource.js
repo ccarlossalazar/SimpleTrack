@@ -1,71 +1,91 @@
 export const userInputs = [
     {
-      id: 1,
+      id: "username",
       label: "Username",
       type: "text",
-      placeholder: "ex. john_doe",
+      placeholder: "ex. JohnS123",
     },
     {
-      id: 2,
+      id: "firstname",
       label: "First Name",
       type: "text",
       placeholder: "ex. John",
     },
     {
-      id: 3,
+      id: "lastname",
       label: "Last Name",
-      type: "mail",
+      type: "text",
       placeholder: "ex. Smith",
     },
     {
-      id: 4,
+      id: "email",
       label: "Email",
       type: "mail",
-      placeholder: "ex. johnsmith@gmail.com",
+      placeholder: "ex. johnsmith123@gmail.com",
     },
     {
-      id: 5,
+      id: "password",
       label: "Password",
-      type: "password",
+      type: "text",
     },
     {
-      id: 6,
+      id: "role",
       label: "Role",
       type: "text",
-      placeholder: "ex. 'employee'",
-    },
+      placeholder: "ex . employee"
+    }
   ];
   
-  export const productInputs = [
+  export const equipmentInputs = [
     {
-      id: 1,
-      label: "Title",
+      id: "id",
+      label: "Equipment ID:",
       type: "text",
-      placeholder: "Apple Macbook Pro",
+      placeholder: "ex. TM-A1",
     },
     {
-      id: 2,
-      label: "Description",
+      id: "name",
+      label: "Equipment Name:",
       type: "text",
-      placeholder: "Description",
+      placeholder: "ex. Treadmill",
     },
     {
-      id: 3,
-      label: "Category",
+      id: "location",
+      label: "Location:",
       type: "text",
-      placeholder: "Computers",
+      placeholder: "ex. Cardio 1",
     },
     {
-      id: 4,
-      label: "Price",
-      type: "text",
-      placeholder: "100",
+      id: "serial_number",
+      label: "Serial #:",
+      type: "mail",
+      placeholder: "ex. 102033",
     },
     {
-      id: 5,
-      label: "Stock",
+      id: "equipment_condition",
+      label: "Condition",
       type: "text",
-      placeholder: "in stock",
-    },
+      placeholder: "ex. excellent"
+    }
   ];
-  
+
+  export const workOrderInputs = [
+    {
+      id: "equipment_id",
+      label: "Equipment ID:",
+      type: "text",
+      placeholder: "ex. TM-A1",
+    },
+    {
+      id: "location",
+      label: "Location:",
+      type: "text",
+      placeholder: "ex. Cardio 1",
+    },
+    {
+      id: "description",
+      label: "Description:",
+      type: "text",
+      placeholder: "What is wrong?"
+    }
+  ];

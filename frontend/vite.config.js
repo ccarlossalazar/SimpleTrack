@@ -16,7 +16,15 @@ export default defineConfig({
         target: 'http://localhost:5000',
         changeOrigin: true,
         secure: false,
-      }
+      }, '/workorders': {
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+        secure: false,
+      }, '/maintenance': {
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+        secure: false,
+      },
     },
   },
 })

@@ -15,13 +15,10 @@ const MaintenanceHistory = sequelize.define('MaintenanceHistory', {
     type: DataTypes.CHAR(8),
     allowNull: false,
   },
-  maintenance_id: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
   date_completed: {
     type: DataTypes.DATEONLY,
     allowNull: false,
+    defaultValue: DataTypes.NOW
   },
   details: {
     type: DataTypes.TEXT,
@@ -31,9 +28,10 @@ const MaintenanceHistory = sequelize.define('MaintenanceHistory', {
 })
 
 MaintenanceHistory.associate = (models) => {
-  MaintenanceHistory.belongsTo(models.WorkOrder, { foreignKey: 'work_order_id' })
-  MaintenanceHistory.belongsTo(models.Equipment, { foreignKey: 'equipment_id' })
-  MaintenanceHistory.belongsTo(models.User, { foreignKey: 'maintenance_id' })
+  MaintenanceHistory.belongsTo(models.WorkOrder, { foreignKey: 'work_order_id',   onDelete: 'CASCADE', 
+  })
+  MaintenanceHistory.belongsTo(models.Equipment, { foreignKey: 'equipment_id', onDelete: 'CASCADE', 
+  })
 }
 
 export default MaintenanceHistory

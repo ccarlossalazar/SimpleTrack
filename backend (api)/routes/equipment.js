@@ -10,7 +10,7 @@ router.put("/:id", updateEquipment)
 //Delete
 router.delete("/:id", deleteEquipment)
 //GET
-router.get("/find/:id", getEquipment)
+router.get("/:id", getEquipment)
 //GET ALL
 router.get("/", getAllEquipment)
 //Count by type of equipment

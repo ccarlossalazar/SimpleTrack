@@ -4,7 +4,8 @@ import sequelize from "../configdatabase.js"
 const Equipment = sequelize.define('Equipment', {
     id: {
         type: DataTypes.CHAR(8),
-        primaryKey: true
+        primaryKey: true,
+        allowNull: false,
     },
     name: {
         type: DataTypes.ENUM('Upright Bike', 'Treadmill', 'Elliptical', 'Recumbent Bike', 'Adaptive Motion Trainer', 'Stair Climber'),

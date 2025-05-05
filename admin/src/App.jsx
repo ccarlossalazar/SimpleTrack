@@ -1,14 +1,22 @@
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import List from "./pages/list/List";
-import Single from "./pages/single/Single";
+import Single from "./pages/SingleUser/Single"
+import SingleEquipment from "./pages/SingleEquipment/SingleEquipment.jsx"
 import New from "./pages/new/New";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { productInputs, userInputs } from "./formSource";
+import { equipmentInputs, userInputs} from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/authContext";
+import { userColumns, equipmentColumns, workOrderColumns, logColumns, requestColumns} from "./datatablesource";
+import NewEquipment from "./pages/newEquipment/newEquipment";
+import NewWorkOrder from "./pages/newWorkOrder/newWorkOrder.jsx";
+import SingleWorkOrder from "./pages/SingleWorkOrder/SingleWorkOrder.jsx";
+import SingleRequest from "./pages/SingleRequest/SingleRequest.jsx";
+import NewRequestWorkOrder from "./pages/newRequestWorkOrder/newRequestWorkOrder.jsx";
+
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -32,19 +40,43 @@ function App() {
           <Route path="login" element={<Login />} />
             <Route index element={<ProtectedRoute><Home /></ProtectedRoute>} />
             <Route path="users">
-              <Route index element={<ProtectedRoute><List /></ProtectedRoute>} />
-              <Route path=":userId" element={<ProtectedRoute><Single /></ProtectedRoute>} />
+              <Route index element={<ProtectedRoute><List columns={userColumns} /></ProtectedRoute>} />
+              <Route path=":id" element={<ProtectedRoute><Single /></ProtectedRoute>} />
               <Route
                 path="new"
                 element={<ProtectedRoute><New inputs={userInputs} title="Add New User" /></ProtectedRoute>}
               />
             </Route>
-            <Route path="products">
-              <Route index element={<List/>} />
+            <Route path="equipment">
+              <Route index element={<List columns={equipmentColumns}/>} />
+              <Route path=":id" element={<ProtectedRoute><SingleEquipment/></ProtectedRoute>} />
+              <Route
+                path="new"
+                element={<ProtectedRoute><NewEquipment/></ProtectedRoute>}
+              />
+            </Route>
+            <Route path="workorders">
+              <Route index element={<List columns={workOrderColumns}/>}/>
+              <Route path=":Id" element={<ProtectedRoute><SingleWorkOrder/></ProtectedRoute>} />
+              <Route
+                path="new"
+                element={<ProtectedRoute><NewWorkOrder /></ProtectedRoute>}
+              />
+            </Route>
+            <Route path="requests">
+              <Route index element={<List columns={requestColumns}/>}/>
+              <Route path=":Id" element={<ProtectedRoute><SingleRequest/></ProtectedRoute>} />
+              <Route
+                path="new/:id"
+                element={<ProtectedRoute><NewRequestWorkOrder/></ProtectedRoute>}
+              />
+            </Route>
+            <Route path="maintenance">
+              <Route index element={<List columns={logColumns}/>} />
               <Route path=":productId" element={<ProtectedRoute><Single/></ProtectedRoute>} />
               <Route
                 path="new"
-                element={<ProtectedRoute><New inputs={productInputs} title="Add New Product" /></ProtectedRoute>}
+                element={<ProtectedRoute><New inputs={equipmentInputs} title="Add New Product" /></ProtectedRoute>}
               />
             </Route>
           </Route>
