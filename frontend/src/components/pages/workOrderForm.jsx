@@ -51,19 +51,19 @@ const WorkOrder = () => {
          
          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 m-6">
          <div>
-         <label className=" flex block mb-3">First Name<Asterisk className='text-red-500 size-2.5'/></label>
+         <label className=" flex mb-3">First Name<Asterisk className='text-red-500 size-2.5'/></label>
           <input name="firstname" placeholder="ex. John" className="bg-white rounded-lg p-2 w-full focus:outline-hidden" required onChange={handleChange}/>
           </div>
           <div>
-          <label className="flex block mb-3">Last Name<Asterisk className='text-red-500 size-2.5'/></label>
+          <label className="flex mb-3">Last Name<Asterisk className='text-red-500 size-2.5'/></label>
           <input name="lastname" placeholder="ex. Smith" className="bg-white rounded-lg p-2 w-full focus:outline-hidden" required onChange={handleChange}/>
         </div>
             <div>
-            <label className="flex block mb-3">Email<Asterisk className='text-red-500 size-2.5'/></label>
+            <label className="flex mb-3">Email<Asterisk className='text-red-500 size-2.5'/></label>
             <input type="email" name="email" placeholder="ex. johnsmith@example.com" className="bg-white rounded-lg p-2 w-full focus:outline-hidden" required onChange={handleChange}/>            
             </div>
             <div>
-            <label className="flex block mb-3">Machine <Asterisk className='text-red-500 size-2.5'/></label>
+            <label className="flex mb-3">Machine <Asterisk className='text-red-500 size-2.5'/></label>
             <input name="name" placeholder="ex. Treadmill" className="bg-white rounded-lg p-2 w-full focus:outline-hidden" required onChange={handleChange}/>         
             </div>
             </div>
@@ -81,7 +81,7 @@ const WorkOrder = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 m-6">
             </div>
             <div className="w-full p-5">
-            <label htmlFor="message" className="flex block mb-2 text-black text-start">Details<Asterisk className='text-red-500 size-2.5'/>:</label>
+            <label htmlFor="message" className="flex mb-2 text-black text-start">Details<Asterisk className='text-red-500 size-2.5'/>:</label>
             <textarea name="description" rows="3" className="block p-2.5 w-full text-sm text-black rounded-lg bg-white focus:outline-hidden" placeholder="Please explain what the issue is." required onChange={handleChange}/>
             </div>
             <div className="bg-blue-500 rounded-2xl p-2 m-10 hover:bg-blue-600">
