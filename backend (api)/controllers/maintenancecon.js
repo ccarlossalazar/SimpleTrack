@@ -43,3 +43,21 @@ export const getEquipmentLogs = async (req,res,next)=>{
         next(err)
     }
 }
+
+export const getLogById = async (req,res,next)=> {
+    try {
+        const log = await Logs.findByPk(req.params.id)
+        res.status(200).json(log)
+    }catch(err) {
+        next(err)
+    }
+}
+
+export const logCount = async(req, res, next) => {
+    try {
+    const logCount = await Logs.count()
+    res.status(200).json(logCount)
+    }catch(err) {
+        next(err)
+    }
+}

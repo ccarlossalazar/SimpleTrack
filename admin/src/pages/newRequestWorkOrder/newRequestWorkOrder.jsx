@@ -2,13 +2,9 @@ import "./newRequestWorkOrder.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import { useState, useEffect } from "react"
-import {Link, useLocation} from 'react-router-dom'
+import { useLocation} from 'react-router-dom'
 import { workOrderInputs } from "../../formSource";
 import axios from 'axios'
-
-
-
-
 
 const NewRequestWorkOrder = ({}) => {
     const location = useLocation()
@@ -38,14 +34,13 @@ const NewRequestWorkOrder = ({}) => {
   const handleClick = async (e) => {
     e.preventDefault()
     try{
-      const newWorkOrder = {
-        ...info,
-      }
+      const {id,status, ...newWorkOrder } = info
       console.log("New Work Order Payload:", newWorkOrder);
       await axios.post("http://localhost:5000/workorders", newWorkOrder)
+      await axios.delete(`http://localhost:5000/requests/${id}`)
       window.location.href = "/workorders"
     }catch(err){
-      console.error("New Work Order Error:", err.message);
+      console.error("Error Creating new work order:", err.message);
     }
   }
 
@@ -66,7 +61,7 @@ const NewRequestWorkOrder = ({}) => {
                   <input id={input.id} onChange={handleChange} type={input.type} placeholder={input.placeholder} value={info[input.id]}/>
                 </div>
               ))}
-              <Link to=""><button onClick={handleClick}>Send</button></Link>
+              <button onClick={handleClick}>Send</button>
             </form>
           </div>
         </div>

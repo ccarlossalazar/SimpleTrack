@@ -1,4 +1,5 @@
 import Equipment from "../models/Equipment.js";
+import { newError } from "../util/error.js";
 
 
 
@@ -8,7 +9,7 @@ export const createEquipment = async (req, res, next) => {
         const savedEquipment = await newEquipment.save()
         res.status(200).json(savedEquipment)
     } catch (err) {
-        next(err)
+       return next(err)
     }
 }
 
@@ -88,6 +89,15 @@ export const countByType = async (req,res,next)=>{
             {name: "Stair Climber", count: stairCount}
         ])
     } catch (err) {
+        next(err)
+    }
+}
+
+export const equipmentCount = async(req, res, next) => {
+    try {
+    const equipCount = await Equipment.count()
+    res.status(200).json(equipCount)
+    }catch(err) {
         next(err)
     }
 }

@@ -1,5 +1,5 @@
 import express from "express"
-import {createWorkOrder, deleteWorkOrder, getAllWorkOrders, getEquipmentWorkOrders, getWorkOrder, updateWorkOrder} from "../controllers/workordercon.js"
+import {createWorkOrder, deleteWorkOrder, getAllWorkOrders, getEquipmentWorkOrders, getWorkOrder, updateWorkOrder, workOrderCount} from "../controllers/workordercon.js"
 //import {verifyToken} from "../util/verifyJWT.js"
 
 
@@ -10,6 +10,8 @@ const router = express.Router()
 router.post("/", createWorkOrder)
 //GET ALL
 router.get("/", getAllWorkOrders)
+//COUNT
+router.get('/count', workOrderCount)
 //GET BY EQUIPMENT ID
 router.get("/equipment/:id", getEquipmentWorkOrders)
 //DELETE

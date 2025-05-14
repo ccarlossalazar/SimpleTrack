@@ -22,23 +22,23 @@ useEffect(() => {
 }, []);
 
   const columns = [
-    { field: "equipment_id", headerName: "Equipment ID", width: 150 },
-    { field: "location", headerName: "Location", width: 150 },
+    { field: "equipment_id", headerName: "Equipment ID", flex: 1 },
+    { field: "name", headerName: "Name", flex: 1 },
+    { field: "location", headerName: "Location", flex: 1 },
+    { field: "status", headerName: "Status", flex: 1 },
+    { field: "description", headerName: "description", flex: 4 },
   ]
 
   return (
   <div className="w-full">
   <DataGrid 
-        className="datagrid"
+        className="w-full"
         rows={data || []}
         columns={columns}
-        pageSize={9}
-        rowsPerPageOptions={[9]}
+        pageSize={8}
+        rowsPerPageOptions={[8]}
         checkboxSelection
         getRowId={(row)=>row.id}
-      //  slots={{
-        //  noRowsOverlay: CustomNoRowsOverlay,
-        //}}
         autoHeight
   />
   </div>

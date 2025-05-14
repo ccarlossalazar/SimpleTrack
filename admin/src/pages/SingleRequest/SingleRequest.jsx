@@ -3,8 +3,10 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import Chart from "../../components/chart/Chart";
 import axios from 'axios'
+import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 
 const SingleRequest = () => {
@@ -35,9 +37,9 @@ fetchRequest()
       <Sidebar />
       <div className="singleContainer">
         <Navbar />
-        <div className="top">
+        <div className="top relative">
           <div className="left">
-            <div className="editButton">Edit</div>
+            <Link to="/requests"><h1 className="absolute bottom-4 bg-blue-300 p-1 rounded-lg text-blue-500">Back</h1></Link>
             <h1 className="title">Information</h1>
             <div className="item">
               <img
@@ -82,6 +84,11 @@ fetchRequest()
                   </span>
                 </div>
               </div>
+            </div>
+            <div className="flex justify-end">
+            <Link to={`/requests/new/${id}`}>
+            <button className="bg-green-200 p-3 rounded-2xl text-green-600 hover:bg-green-300 border-dotted border-1">Accept</button>
+            </Link>
             </div>
           </div>
         </div>

@@ -32,6 +32,9 @@ fetchUser()
 
 const toggleEdit = () => {
   setEdit(!edit)
+  if (edit) {
+    window.location.reload()
+  }
 }
 
 const handleChange = (e) => {
@@ -95,8 +98,8 @@ const handleSubmit = async () => {
               </div>
               <div className="details">
                 <div className="detailItem">
-                  <span className="itemKey">Password:</span>
-                  <input className="itemValue field-sizing-fixed border-b-2 border-b-gray-300 outline-hidden focus:border-b-blue-500" id="password" value={data.password} onChange={handleChange}></input>
+                  <span className="itemKey">Change Password:</span>
+                  <input className="itemValue field-sizing-fixed border-b-2 border-b-gray-300 outline-hidden focus:border-b-blue-500" id="password" onChange={handleChange}></input>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Email:</span>
@@ -164,7 +167,7 @@ const handleSubmit = async () => {
             </div>)}
             {edit && 
             <div className="flex justify-end">
-              <button className="border-2 border-green-500 p-2 rounded-xl bg-green-200 hover:bg-green-300" onClick={handleSubmit}>
+              <button className="border-2 border-blue-500 p-2 rounded-xl bg-blue-200 hover:bg-blue-300" onClick={handleSubmit}>
                 Save Changes
               </button>
             </div>}

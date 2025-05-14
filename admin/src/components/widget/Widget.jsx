@@ -1,25 +1,57 @@
 import "./widget.scss";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
+import HandymanIcon from "@mui/icons-material/Handyman";
+import BookIcon from "@mui/icons-material/Book";
+import PendingActionsIcon from '@mui/icons-material/PendingActions';
+import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
+import { useEffect } from "react";
+import { useState } from "react";
+import axios from "axios";
+
 
 const Widget = ({ type }) => {
+const[amount, setAmount] = useState(0)
+
   let data;
 
-  //temporary
-  const amount = 100;
-  const diff = 20;
+  useEffect(() => {
+    const fetchCount = async () => {
+      try {
+        let res
+
+        switch (type) {
+          case "requests":
+            res = await axios.get("http://localhost:5000/requests/count")
+            setAmount(res.data)
+            break
+          case "order":
+            res = await axios.get("http://localhost:5000/maintenance/count")
+            setAmount(res.data)
+            break
+          case "equipment":
+            res = await axios.get("http://localhost:5000/equipment/count")
+            setAmount(res.data)
+            break
+          case "workorders":
+            res = await axios.get("http://localhost:5000/workorders/count")
+            setAmount(res.data)
+            break
+      }
+    } catch(err) {
+      console.error("Failed to fetch data:", err)
+    }
+  }
+  fetchCount()
+},[type])
 
   switch (type) {
-    case "user":
+    case "requests":
       data = {
         title: "PENDING REQUESTS",
         isMoney: false,
-        link: "See all users",
+        link: "See all requests",
+        url: "/requests",
         icon: (
-          <PersonOutlinedIcon
+          <PendingActionsIcon
             className="text-red-500"
           />
         ),
@@ -27,34 +59,39 @@ const Widget = ({ type }) => {
       break;
     case "order":
       data = {
-        title: "ORDERS",
+        title: "MAINTENANCE LOGS",
         isMoney: false,
-        link: "View all orders",
+        link: "View maintenance history",
+        url: "/maintenance",
         icon: (
-          <ShoppingCartOutlinedIcon
+          <BookIcon
             className="text-yellow-500"
           />
         ),
       };
       break;
-    case "earning":
+    case "equipment":
       data = {
         title: "EQUIPMENT COUNT",
-        link: "View net earnings",
+        isMoney: false,
+        link: "View equipment",
+        url: "/equipment",
         icon: (
-          <MonetizationOnOutlinedIcon
-            className="text-green-500"
+          <FitnessCenterIcon
+            className="text-blue-500"
           />
         ),
       };
       break;
-    case "balance":
+    case "workorders":
       data = {
         title: "WORK ORDERS",
-        link: "See details",
+        isMoney: false,
+        link: "View all work orders",
+        url: "/workorders",
         icon: (
-          <AccountBalanceWalletOutlinedIcon
-            className="text-purple-500"
+          <HandymanIcon
+            className="text-green-600"
           />
         ),
       };
@@ -70,11 +107,11 @@ const Widget = ({ type }) => {
         <span className="counter">
           {data.isMoney && "$"} {amount}
         </span>
-        <span className="link">{data.link}</span>
+        <a href={data.url} className="link hover:text-blue-500">{data.link}</a>
       </div>
       <div className="right">
-        </div>
         {data.icon}
+        </div>
       </div>
   );
 };

@@ -2,7 +2,7 @@ import "./sidebar.scss";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import HandymanIcon from "@mui/icons-material/Handyman";
-import StoreIcon from "@mui/icons-material/Store";
+import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import PendingActionsIcon from '@mui/icons-material/PendingActions';
 import InsertChartIcon from "@mui/icons-material/InsertChart";
@@ -11,11 +11,12 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import BookIcon from "@mui/icons-material/Book";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "/src/context/authContext.jsx";
 
 const Sidebar = () => {
   const { user, dispatch: authDispatch } = useContext(AuthContext)
+  const [logout, setLogout] = useState(false)
 
  const handleLogout = () => {
         try {
@@ -32,6 +33,10 @@ const Sidebar = () => {
 
     const mainPage = () => {
       window.location.href = 'http://localhost:5173/'
+    }
+
+    const toggleLogout = () => {
+      setLogout(!logout)
     }
 
   return (
@@ -58,7 +63,7 @@ const Sidebar = () => {
           </Link>
           <Link to="/equipment" style={{ textDecoration: "none" }}>
             <li>
-              <StoreIcon className="icon" />
+              <FitnessCenterIcon className="icon" />
               <span>Equipment</span>
             </li>
           </Link>
@@ -95,20 +100,21 @@ const Sidebar = () => {
           </Link>
           <p className="title">USER</p>
           <li>
+            <KeyboardReturnIcon className="icon" />
+            <span><button onClick={mainPage}>Back to site</button></span>
+          </li>
+          <li onClick={toggleLogout}>
             <AccountCircleOutlinedIcon className="icon" />
             {user ? (
               <span>{user.username}</span>
               ) 
               : <span>Profile</span>}
           </li>
-          <li>
-            <KeyboardReturnIcon className="icon" />
-            <span><button onClick={mainPage}>Back to site</button></span>
-          </li>
+          {logout && 
           <li>
             <ExitToAppIcon className="icon" />
             <span><button onClick={handleLogout}>Logout</button></span>
-          </li>
+          </li>}
         </ul>
       </div>
     </div>

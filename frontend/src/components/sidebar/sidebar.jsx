@@ -10,9 +10,12 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "/src/context/authContext.jsx";
+import { useState } from "react";
+
 
 const Sidebar = () => {
  const { user, dispatch: authDispatch } = useContext(AuthContext)
+ const [logout, setLogout] = useState(false)
 
  const handleLogout = () => {
         try {
@@ -35,6 +38,10 @@ const Sidebar = () => {
 
      const dashboardLink = dashboardRoutes[user?.role] || '/'
   
+    const toggleLogout = () => {
+      setLogout(!logout)
+    }
+
      return (
     <div className="sidebar h-screen bg-white flex flex-col max-w-s border-2 border-gray-200">
       <div className="top">
@@ -59,7 +66,7 @@ const Sidebar = () => {
               <span>Equipment</span>
             </li>
           </Link>
-          <Link to="/work-orders" style={{ textDecoration: "none" }}>
+          <Link to="/workorders" style={{ textDecoration: "none" }}>
           <li>
             <CreditCardIcon className="text-[#003768]" />
             <span> Work Orders</span>
@@ -73,24 +80,27 @@ const Sidebar = () => {
           </li>
           </Link>
           <li>
+            <Link to="/notifications">
             <NotificationsNoneIcon className="text-[#003768]" />
             <span>Notifications</span>
+            </Link>
           </li>
           <p className="title">USER</p>
           <li>
+          <Link to='/'>
+            <KeyboardReturnIcon className="text-[#003768]" />
+            <span>Back to MainPage</span>
+          </Link>
+          </li>
+          <li onClick={toggleLogout}>
             <AccountCircleOutlinedIcon className="text-[#003768]" />
             {user ? (<span>{user.username}</span>) : null}
           </li>
-          <Link to='/'>
-          <li>
-            <KeyboardReturnIcon className="text-[#003768]" />
-            <span>Back to MainPage</span>
-          </li>
-          </Link>
+          {logout &&
           <li>
             <ExitToAppIcon className="text-[#003768]" />
             <span><button onClick={handleLogout}>Logout</button></span>
-          </li>
+          </li>}
         </ul>
       </div>
     </div>

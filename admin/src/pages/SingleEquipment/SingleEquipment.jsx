@@ -149,7 +149,7 @@ const toggleLogs = () => {
             )}
             {edit && 
             <div className="flex justify-end">
-              <button className="border-2 border-green-500 p-2 rounded-xl bg-green-200 hover:bg-green-300" onClick={handleSubmit}>
+              <button className="border-2 border-blue-500 p-2 rounded-xl bg-blue-200 hover:bg-blue-300" onClick={handleSubmit}>
                 Save Changes
               </button>
             </div>}

@@ -7,6 +7,7 @@ import { AuthContext } from "../context/authContext.jsx"
 
 const Navbar = () => {
 const [menuDrawerUp, setMenuDrawerUp] = useState(false)
+const [logout, setLogout] = useState(false)
     
 const toggleMenuDrawer = () => {
         setMenuDrawerUp(!menuDrawerUp)
@@ -33,43 +34,47 @@ const toAdminPortal = () => {
     window.location.href = 'http://localhost:5174/'
 }
 
+const toggleLogout = () => {
+    setLogout(!logout)
+}
+
     return (
-        <nav className="sticky top-0 z-50 py-8 border-b border-[#003768] bg-opacity-40 backdrop-blur-3xl">
-            <div className="px-4 mx-auto relative text-sm">
+        <nav className="sticky top-0 z-50 py-10 border-b border-[#003768] bg-opacity-40 backdrop-blur-3xl bg-white">
+            <div className="px-6 mx-auto relative text-md">
                 <div className="flex items-center">
                     <div className='flex justify-between items-center'>
                     <Link to='/'>
-                    <div className="flex items-center flex-shrink-0">
-                    <img className="h-7 w-7" src='https://www.logoai.com/oss/icons/2021/10/27/ppfWwJiPVMPOEPM.png' alt="logo"/>
-                    <span className="text-2xl tracking-tight font-bold font-serif bg-gradient-to-r from-blue-900 via-blue-600 to-blue-400 inline-block text-transparent bg-clip-text ">impleTrack</span>
+                    <div className="flex items-baseline flex-shrink-0">
+                    <img className="h-10 w-10" src='https://www.logoai.com/oss/icons/2021/10/27/ppfWwJiPVMPOEPM.png' alt="logo"/>
+                    <span className="text-3xl tracking-tight font-bold font-serif bg-gradient-to-r from-blue-900 via-blue-600 to-blue-400 inline-block text-transparent bg-clip-text ">impleTrack</span>
                     </div>
                     </Link>
                     </div>
-                    <div className="uppercase font-bold w-full">
-                        <ul className="hidden lg:flex ml-14 space-x-12 text-lg text-[#003768]">
-                        <li>
+                    <div className="capitalize font-semibold w-full">
+                        <ul className="hidden lg:flex ml-14 space-x-8 text-lg text-[#003768]">
+                        <li className="hover:text-blue-400">
                         <Link to='/events'>Event Calendar</Link>
                         </li>
-                        <li>
+                        <li className="hover:text-blue-400">
                         <Link to='/about'>About</Link>
                         </li>
-                        <li>
+                        <li className="hover:text-blue-400">
                         <Link to='/additional-info'>Additional Information</Link>
                         </li>
                         {user?.role !== 'admin' && (
-                       <li>
+                       <li className="hover:text-blue-400">
                         <Link to='/work-order'>Work Order</Link>
                         </li>)}
                         {user?.role === 'admin' && (
-                        <li>
-                        <button onClick={toAdminPortal} className='uppercase'>Admin Portal</button>
+                        <li className="hover:text-blue-400">
+                        <button onClick={toAdminPortal} className='capitalize'>Admin Portal</button>
                         </li>)}
                         {user?.role === 'maintenance' && (
-                        <li>
+                        <li className="hover:text-blue-400">
                         <Link to='/maintenance-portal'>Maintenance Portal</Link>
                         </li>)}
                         {user?.role === 'employee' && (
-                        <li>
+                        <li className="hover:text-blue-400">
                         <Link to='/employee-portal'>Employee Portal</Link>
                         </li>)}
                         </ul>
@@ -77,18 +82,19 @@ const toAdminPortal = () => {
                     <div className='hidden lg:flex flex-col justify-end'>
                         {user ? (
                         <div className="space-x-4 flex items-center">
-                        <div className="flex space-x-3 flex-col justify-center items-center">
+                        <div onClick={toggleLogout} className="flex space-x-3 flex-col justify-center items-center">
                         <img src={user.img || 'https://static.vecteezy.com/system/resources/previews/020/911/740/non_2x/user-profile-icon-profile-avatar-user-icon-male-icon-face-icon-profile-icon-free-png.png'}
-                        className="w-10 h-10 rounded-full outline-2"
+                        className="w-5 h-5 rounded-full outline-2"
                         />
-                        <span className="text-black font-semibold">{user.username}</span>
+                        <span className="text-black font-semibold text-md">{user.username}</span>
                         </div>
-                        <button className=" bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-md" onClick={handleLogout}>Logout</button>
+                        {logout && 
+                        <button className=" bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-md" onClick={handleLogout}>Logout</button>}
                         </div>
                         ) : (
                     <div className="hidden lg:flex items-end space-x-">
                     <Link to='/login'>
-                    <button className="bg-gradient-to-r from-blue-500 to-blue-700 py-2 px-3 rounded-lg text-xl">Login</button>
+                    <button className="bg-gradient-to-r from-blue-500 to-blue-700 py-2 px-3 rounded-lg text-lg">Login</button>
                     </Link>
                     </div>
                         )}
@@ -101,7 +107,7 @@ const toAdminPortal = () => {
                     </div>
                     {menuDrawerUp && (
                     <div className="fixed right-0 z-20 bg-white w-full p-12 flex flex-col justify-center items-center lg:hidden">
-                        <ul className="py-3 uppercase font-semibold space-y-2 text-[#003768]">
+                        <ul className="py-3 Capitalize font-semibold space-y-2 text-[#003768]">
                         <li className='hover:overline'>
                         <Link to='/events'>Event Calendar</Link>
                         </li>
@@ -117,7 +123,7 @@ const toAdminPortal = () => {
                         </li>)}
                         {user?.role === 'admin' && (
                         <li className=''>
-                        <button onClick={toAdminPortal} className='uppercase hover:overline'>Admin Portal</button>
+                        <button onClick={toAdminPortal} className='capitalize hover:overline'>Admin Portal</button>
                         </li>)}
                         {user?.role === 'maintenance' && (
                         <li className='hover:overline'>

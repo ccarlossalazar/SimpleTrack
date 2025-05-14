@@ -2,11 +2,11 @@ export const userColumns = [
   {
     field: "username",
     headerName: "Username",
-    width: 200,
+    flex: 1,
     renderCell: (params) => {
       return (
         <div className="cellWithImg">
-          <img className="cellImg" src={params.row.img || 'https://static.vecteezy.com/system/resources/previews/019/879/186/non_2x/user-icon-on-transparent-background-free-png.png'} alt="avatar" />
+          <img className="cellImg" src={params.row.img || 'https://icons.veryicon.com/png/o/miscellaneous/standard/avatar-15.png'} alt="avatar" />
           {params.row.username}
         </div>
       );
@@ -15,26 +15,26 @@ export const userColumns = [
   {
     field: "email",
     headerName: "Email",
-    width: 230,
+    flex: 1,
   },
   {
     field: "createdAt",
     headerName: "Created",
-    width: 200,
+    flex: 1,
   },
   {
     field: "updatedAt",
     headerName: "Last Updated",
-    width: 200
+    flex: 1
   }
 ];
 
 export const equipmentColumns = [
-  { field: "id", headerName: "ID", width: 125 },
+  { field: "id", headerName: "ID", flex: 1 },
   {
     field: "name",
     headerName: "Name",
-    width: 250,
+    flex: 1,
     renderCell: (params) => {
       return (
         <div className="cellWithImg">
@@ -46,11 +46,11 @@ export const equipmentColumns = [
   {
     field: "location",
     headerName: "Location",
-    width: 100,
+    flex: 1,
   },
   {field: "equipment_condition", 
     headerName: "Condition",
-    width: 100
+    flex: 1
   },
   /*{
     field: "status",
@@ -67,22 +67,22 @@ export const equipmentColumns = [
   {
     field: "createdAt",
     headerName: "Created",
-    width: 200,
+    width: 1,
   },
 ];
 
 
 export const workOrderColumns = [
-  { field: "id", headerName: "ID", width: 125 },
+  { field: "id", headerName: "ID", flex: 1 },
   {
     field: "cost",
     headerName: "Cost",
-    width: 100,
+    flex: 1,
   },
   {
     field: "status",
     headerName: "Status",
-    width: 120,
+    flex: 1,
     renderCell: (params) => {
       return (
         <div className={`cellWithStatus ${params.row.status}`}>
@@ -94,75 +94,48 @@ export const workOrderColumns = [
   {
     field: "createdAt",
     headerName: "Created",
-    width: 200,
+    flex: 1,
   },
 ];
 
 export const logColumns = [
-  { field: "id", headerName: "ID", width: 125 },
+  { field: "id", headerName: "ID", flex: 1 },
   {
-    field: "description",
-    headerName: "Cost",
-    width: 100,
-  },
-  {
-    field: "cost",
-    headerName: "Cost",
-    width: 100,
-  },
-  {
-    field: "status",
-    headerName: "Status",
-    width: 120,
+    field: "details",
+    headerName: "Details",
+    flex: 1,
   },
   {
     field: "createdAt",
     headerName: "Created",
-    width: 200,
+    flex: 1,
   },
 ]
 
 export const requestColumns = [
   {
-    field: "id",
-    headerName: "Id",
-    width: 200,
-  },
-  {
     field: "description",
     headerName: "Description",
-    width: 200,
+    flex: 1,
   },
   {
     field: "name",
     headerName: "Name",
-    width: 100,
+    flex: 1,
   },
   {
     field: "location",
     headerName: "Location",
-    width: 120,
+    flex: 1,
   },
   {
     field: "date_requested",
     headerName: "Requested on",
-    width: 200,
+    flex: 1,
   },  
   {
     field: "email",
     headerName: "Requested by",
-    width: 200,
-  },
-  {
-    field: "status",
-    headerName: "Status",
-    width: 120,
-    renderCell: (params) => {
-      return (
-        <div className={`cellWithStatus ${params.row.status}`}>
-          {params.row.status}
-        </div>
-      );
-    },
+    flex: 1,
   },
 ]

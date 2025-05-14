@@ -67,3 +67,12 @@ export const updateWorkOrder = async (req,res,next)=>{
         next(err)
     }
 }
+
+export const workOrderCount = async(req, res, next) => {
+    try {
+    const wcCount = await WorkOrder.count()
+    res.status(200).json(wcCount)
+    }catch(err) {
+        next(err)
+    }
+}

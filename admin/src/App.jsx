@@ -5,7 +5,7 @@ import Single from "./pages/SingleUser/Single"
 import SingleEquipment from "./pages/SingleEquipment/SingleEquipment.jsx"
 import New from "./pages/new/New";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { equipmentInputs, userInputs} from "./formSource";
+import { userInputs} from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
@@ -15,8 +15,11 @@ import NewEquipment from "./pages/newEquipment/newEquipment";
 import NewWorkOrder from "./pages/newWorkOrder/newWorkOrder.jsx";
 import SingleWorkOrder from "./pages/SingleWorkOrder/SingleWorkOrder.jsx";
 import SingleRequest from "./pages/SingleRequest/SingleRequest.jsx";
+import SingleLog from "./pages/SingleLog/SingleLog.jsx";
 import NewRequestWorkOrder from "./pages/newRequestWorkOrder/newRequestWorkOrder.jsx";
-
+import NewLog from "./pages/newLog/newLog.jsx";
+import Notifications from "./pages/notifications/notifications.jsx";
+import Stats from "./pages/stats/stats.jsx";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -73,11 +76,17 @@ function App() {
             </Route>
             <Route path="maintenance">
               <Route index element={<List columns={logColumns}/>} />
-              <Route path=":productId" element={<ProtectedRoute><Single/></ProtectedRoute>} />
+              <Route path=":id" element={<ProtectedRoute><SingleLog /></ProtectedRoute>} />
               <Route
-                path="new"
-                element={<ProtectedRoute><New inputs={equipmentInputs} title="Add New Product" /></ProtectedRoute>}
+                path="new/:id"
+                element={<ProtectedRoute><NewLog/></ProtectedRoute>}
               />
+            </Route>
+            <Route path="notifications">
+              <Route index element={<Notifications/>} />
+            </Route>
+            <Route path="stats">
+              <Route index element={<Stats/>} />
             </Route>
           </Route>
         </Routes>

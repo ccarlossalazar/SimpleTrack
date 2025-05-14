@@ -43,3 +43,13 @@ export const getRequest = async (req,res,next)=>{
         next(err)
     }
 }
+
+
+export const requestsCount = async(req, res, next) => {
+    try {
+    const requestCount = await Requests.count()
+    res.status(200).json(requestCount)
+    }catch(err) {
+        next(err)
+    }
+}

@@ -8,6 +8,7 @@ import axios from 'axios'
 
 const NewEquipment = ({}) => {
     const [info, userInfo] = useState({})
+    const [err,setError] = useState("")
    
     const handleChange = (e) => {
       userInfo(prev=>({...prev, [e.target.id]:e.target.value})) 
@@ -24,6 +25,7 @@ const NewEquipment = ({}) => {
         window.location.href = "/equipment"
       }catch(err){
         console.error("New Equipment Error:", err.message);
+        setError(err.response?.data?.message || "There was an error creating equipment")
       }
     }
 
@@ -45,6 +47,7 @@ const NewEquipment = ({}) => {
                 </div>
               ))}
               <Link to=""><button onClick={handleClick}>Send</button></Link>
+              {err && <h1 className="errorMessage">{err}</h1>}
             </form>
           </div>
         </div>

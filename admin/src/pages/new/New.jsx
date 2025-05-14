@@ -16,24 +16,41 @@ const New = ({ inputs, title }) => {
   }
 
   const handleClick = async (e) => {
-    e.preventDefault()
-    const data = new FormData()
-    data.append("file", file)
-    data.append("upload_preset", "upload")
-    try{
-      const uploadres= await axios.post("https://api.cloudinary.com/v1_1/dhslsmpkl/image/upload", data)
-      const {url} = uploadres.data
-      const newUser = {
-        ...info,
-        img: url || null,
+    e.preventDefault();
+  
+    let imageUrl = null;
+  
+    if (file) {
+      const data = new FormData();
+      data.append("file", file);
+      data.append("upload_preset", "upload");
+  
+      try {
+        const uploadRes = await axios.post(
+          "https://api.cloudinary.com/v1_1/dhslsmpkl/image/upload",
+          data
+        );
+        imageUrl = uploadRes.data.url;
+      } catch (err) {
+        console.error("Image upload failed:", err.message);
+        return; 
       }
+    }
+  
+    const newUser = {
+      ...info,
+      img: imageUrl,
+    };
+  
+    try {
       console.log("New User Payload:", newUser);
-      await axios.post("http://localhost:5000/auth/register", newUser)
-      window.location.href = "/users"
-    }catch(err){
+      await axios.post("http://localhost:5000/auth/register", newUser);
+      window.location.href = "/users";
+    } catch (err) {
       console.error("Register Error:", err.message);
     }
-  }
+  };
+  
 
 
   console.log(info)
@@ -76,7 +93,7 @@ const New = ({ inputs, title }) => {
                   <input onChange={handleChange} type={input.type} placeholder={input.placeholder} id={input.id}/>
                 </div>
               ))}
-              <Link><button onClick={handleClick}>Send</button></Link>
+              <Link><button className="" onClick={handleClick}>Send</button></Link>
             </form>
           </div>
         </div>

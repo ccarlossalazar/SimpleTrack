@@ -1,7 +1,7 @@
 import Navbar from '../navbar.jsx'
 import Footer from '../footer.jsx'
 import {useState } from 'react'
-import { BadgeCheck } from 'lucide-react'
+import { BadgeCheck, Asterisk} from 'lucide-react'
 import {Link} from "react-router-dom"
 import axios from 'axios'
 
@@ -47,29 +47,29 @@ const WorkOrder = () => {
         <h1 className="text-gray-700 text-lg mt-15">Think something is broken? Please let us know and fill out the form below.</h1>
         <h1 className="text-black font-semibold text-2xl mb-15">Submit form for a work order request.</h1>
          <form onSubmit={submit} className="space-y-8 m-5 text-start">
-         <h1 className="text-start text-xs font-bold">(*) indicates a required field</h1>
+         <h1 className="flex text-start text-xs font-bold items-center">(<Asterisk className='text-red-500 size-2.5'/>) indicates a required field</h1>
          
          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 m-6">
          <div>
-         <label className="block mb-3">First Name*</label>
+         <label className=" flex block mb-3">First Name<Asterisk className='text-red-500 size-2.5'/></label>
           <input name="firstname" placeholder="ex. John" className="bg-white rounded-lg p-2 w-full focus:outline-hidden" required onChange={handleChange}/>
           </div>
           <div>
-          <label className="block mb-3">Last Name*</label>
+          <label className="flex block mb-3">Last Name<Asterisk className='text-red-500 size-2.5'/></label>
           <input name="lastname" placeholder="ex. Smith" className="bg-white rounded-lg p-2 w-full focus:outline-hidden" required onChange={handleChange}/>
         </div>
             <div>
-            <label className="block mb-3">Email*</label>
-            <input name="email" placeholder="ex. johnsmith@example.com" className="bg-white rounded-lg p-2 w-full focus:outline-hidden" required onChange={handleChange}/>            
+            <label className="flex block mb-3">Email<Asterisk className='text-red-500 size-2.5'/></label>
+            <input type="email" name="email" placeholder="ex. johnsmith@example.com" className="bg-white rounded-lg p-2 w-full focus:outline-hidden" required onChange={handleChange}/>            
             </div>
             <div>
-            <label className="block mb-3">Machine</label>
+            <label className="flex block mb-3">Machine <Asterisk className='text-red-500 size-2.5'/></label>
             <input name="name" placeholder="ex. Treadmill" className="bg-white rounded-lg p-2 w-full focus:outline-hidden" required onChange={handleChange}/>         
             </div>
             </div>
             <div className="md:col-span-2 m-6">
-            <label>
-                Location:
+            <label className='flex'>
+                Location<Asterisk className='text-red-500 size-2.5'/>:
                 <select name="location" value={workorder.location} onChange={handleChange} required>
                     <option disabled value="">Select...</option>
                     <option value="Cardio 1">Cardio 1</option>
@@ -81,8 +81,8 @@ const WorkOrder = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 m-6">
             </div>
             <div className="w-full p-5">
-            <label htmlFor="message" className="block mb-2 text-black text-start">Details*:</label>
-            <textarea name="description" rows="3" className="block p-2.5 w-full text-sm text-black rounded-lg bg-white focus:outline-hidden" placeholder="Please explain what the issue is." onChange={handleChange}/>
+            <label htmlFor="message" className="flex block mb-2 text-black text-start">Details<Asterisk className='text-red-500 size-2.5'/>:</label>
+            <textarea name="description" rows="3" className="block p-2.5 w-full text-sm text-black rounded-lg bg-white focus:outline-hidden" placeholder="Please explain what the issue is." required onChange={handleChange}/>
             </div>
             <div className="bg-blue-500 rounded-2xl p-2 m-10 hover:bg-blue-600">
         <button type='submit' className="text-center w-full p-2 text-white font-semibold">Submit Request</button>

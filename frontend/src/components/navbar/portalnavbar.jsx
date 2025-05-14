@@ -1,11 +1,20 @@
 import "./navbar.scss";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
-import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
+import { AuthContext } from "../../context/authContext";
+import { useContext} from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
 
 const Navbar = () => {
+const { user } = useContext(AuthContext)
+const [logout, setLogout] = useState(false) 
 
+
+const toggleLogout = () => {
+  setLogout(!logout)
+}
   return (
     <div className="navbar">
       <div className="wrapper">
@@ -14,21 +23,24 @@ const Navbar = () => {
           <SearchOutlinedIcon />
         </div>
         <div className="items">
+          <Link to="/notifications">
           <div className="item">
             <NotificationsNoneOutlinedIcon className="icon" />
             <div className="counter">1</div>
           </div>
-          <div className="item">
-            <ChatBubbleOutlineOutlinedIcon className="icon" />
-            <div className="counter">2</div>
-          </div>
-          <div className="item">
+          </Link>
+          <div className="flex-col relative">
+          <div className="item" onClick={toggleLogout}>
             <img
-              src="https://images.pexels.com/photos/941693/pexels-photo-941693.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+              src={user.img}
               alt=""
               className="avatar"
-            />
+              />
           </div>
+          {logout &&
+          <button className="absolute border-1 border-red-500 mt-4 p-1 rounded-md text-red-400 hover:bg-red-400 hover:text-white">Logout</button>
+        }
+        </div>
         </div>
       </div>
     </div>

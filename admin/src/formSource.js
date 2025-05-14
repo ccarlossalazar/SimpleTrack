@@ -20,7 +20,7 @@ export const userInputs = [
     {
       id: "email",
       label: "Email",
-      type: "mail",
+      type: "email",
       placeholder: "ex. johnsmith123@gmail.com",
     },
     {
@@ -89,3 +89,27 @@ export const userInputs = [
       placeholder: "What is wrong?"
     }
   ];
+
+  export const logInputs = [
+    {
+      id: "equipment_id",
+      label: "Equipment ID:",
+      type: "text",
+      placeholder: "ex. TM-A1",
+    },
+    {
+      id: "details",
+      label: "Details:",
+      type: "text",
+      placeholder: "What was done?"
+    },
+    {
+      id: "work_order_id",
+      label: "Work Order ID:",
+      type: "text",
+      placeholder: "ex: 12",
+      readOnly: true
+    },
+  ];
+
+  

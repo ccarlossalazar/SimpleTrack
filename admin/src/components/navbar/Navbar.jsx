@@ -5,9 +5,13 @@ import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNone
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
+import {Link} from 'react-router-dom'
+import { AuthContext } from "../../../../frontend/src/context/authContext";
 
 const Navbar = () => {
   const { dispatch } = useContext(DarkModeContext);
+    const { user } = useContext(AuthContext)
+  
 
   return (
     <div className="navbar">
@@ -23,17 +27,21 @@ const Navbar = () => {
               onClick={() => dispatch({ type: "TOGGLE" })}
             />
           </div>
+          <Link to={'/notifications'}>
           <div className="item">
             <NotificationsNoneOutlinedIcon className="icon" />
             <div className="counter">1</div>
           </div>
+          </Link>
+          <Link to={'/stats'}>
           <div className="item">
             <ChatBubbleOutlineOutlinedIcon className="icon" />
             <div className="counter">2</div>
           </div>
+          </Link>
           <div className="item">
             <img
-              src="https://images.pexels.com/photos/941693/pexels-photo-941693.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+              src={user?.image || "https://icons.veryicon.com/png/o/miscellaneous/standard/avatar-15.png"}
               alt=""
               className="avatar"
             />
