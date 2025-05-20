@@ -46,12 +46,12 @@ const toggleLogout = () => {
                     <Link to='/'>
                     <div className="flex items-baseline flex-shrink-0">
                     <img className="h-10 w-10" src='https://www.logoai.com/oss/icons/2021/10/27/ppfWwJiPVMPOEPM.png' alt="logo"/>
-                    <span className="text-3xl tracking-tight font-bold font-serif bg-gradient-to-r from-blue-900 via-blue-600 to-blue-400 inline-block text-transparent bg-clip-text ">impleTrack</span>
+                    <span className="text-2xl tracking-tight font-bold bg-gradient-to-r from-blue-900 via-blue-600 to-blue-400 inline-block text-transparent bg-clip-text ">impleTrack</span>
                     </div>
                     </Link>
                     </div>
                     <div className="capitalize font-semibold w-full">
-                        <ul className="hidden lg:flex ml-14 space-x-8 text-lg text-[#003768]">
+                        <ul className="hidden lg:flex ml-14 space-x-8 text-2xl text-[#003768]">
                         <li className="hover:text-blue-400">
                         <Link to='/events'>Event Calendar</Link>
                         </li>
@@ -80,7 +80,7 @@ const toggleLogout = () => {
                         </ul>
                         </div>
                     <div className='hidden lg:flex flex-col justify-end'>
-                        {user ? (
+                        {user && (
                         <div className="space-x-4 flex items-center">
                         <div onClick={toggleLogout} className="flex space-x-3 flex-col justify-center items-center">
                         <img src={user.img || 'https://static.vecteezy.com/system/resources/previews/020/911/740/non_2x/user-profile-icon-profile-avatar-user-icon-male-icon-face-icon-profile-icon-free-png.png'}
@@ -91,12 +91,6 @@ const toggleLogout = () => {
                         {logout && 
                         <button className=" bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-md" onClick={handleLogout}>Logout</button>}
                         </div>
-                        ) : (
-                    <div className="hidden lg:flex items-end space-x-">
-                    <Link to='/login'>
-                    <button className="bg-gradient-to-r from-blue-500 to-blue-700 py-2 px-3 rounded-lg text-lg">Login</button>
-                    </Link>
-                    </div>
                         )}
                     </div>
                     <div className="lg:hidden md:flex flex-col justify-end">

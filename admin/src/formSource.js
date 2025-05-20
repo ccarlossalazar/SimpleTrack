@@ -28,12 +28,6 @@ export const userInputs = [
       label: "Password",
       type: "text",
     },
-    {
-      id: "role",
-      label: "Role",
-      type: "text",
-      placeholder: "ex . employee"
-    }
   ];
   
   export const equipmentInputs = [
@@ -61,35 +55,8 @@ export const userInputs = [
       type: "mail",
       placeholder: "ex. 102033",
     },
-    {
-      id: "equipment_condition",
-      label: "Condition",
-      type: "text",
-      placeholder: "ex. excellent"
-    }
   ];
-
-  export const workOrderInputs = [
-    {
-      id: "equipment_id",
-      label: "Equipment ID:",
-      type: "text",
-      placeholder: "ex. TM-A1",
-    },
-    {
-      id: "location",
-      label: "Location:",
-      type: "text",
-      placeholder: "ex. Cardio 1",
-    },
-    {
-      id: "description",
-      label: "Description:",
-      type: "text",
-      placeholder: "What is wrong?"
-    }
-  ];
-
+  
   export const logInputs = [
     {
       id: "equipment_id",

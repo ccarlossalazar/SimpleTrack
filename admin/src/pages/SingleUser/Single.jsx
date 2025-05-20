@@ -3,9 +3,9 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import Chart from "../../components/chart/Chart";
 import axios from 'axios'
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 
 const Single = () => {
@@ -62,7 +62,10 @@ const handleSubmit = async () => {
         <div className="top">
           <div className="left flex-col flex">
            {edit ? (<div onClick={toggleEdit} className="cancelButton">Cancel</div>) : (<div onClick={toggleEdit} className="editButton">Edit</div>)}
-            {edit ? (<h1 className="title">Editing</h1>) : (<h1 className="title">Information</h1>)}
+            <Link to="/users">
+            {!edit && <h1 className="absolute text-sm"><ArrowBackIcon className="text-gray-500"/></h1>}
+            </Link>
+            {edit ? (<h1 className="pb-5 text-blue-500">Editing</h1>) : (<h1 className="title text-start pl-8">Information</h1>)}
             <h1 className="itemTitle font-bold text-2xl pb-4 text-gray-500 pl-30">{data.firstname} {data.lastname}</h1>
             {edit ? (
             <div className="item">
@@ -167,7 +170,7 @@ const handleSubmit = async () => {
             </div>)}
             {edit && 
             <div className="flex justify-end">
-              <button className="border-2 border-blue-500 p-2 rounded-xl bg-blue-200 hover:bg-blue-300" onClick={handleSubmit}>
+              <button className="border-2 border-blue-400 p-2 rounded-lg hover:bg-blue-300 text-blue-400 hover:text-blue-600" onClick={handleSubmit}>
                 Save Changes
               </button>
             </div>}

@@ -70,8 +70,8 @@ const WorkOrder = () => {
             <div className="md:col-span-2 m-6">
             <label className='flex'>
                 Location<Asterisk className='text-red-500 size-2.5'/>:
-                <select name="location" value={workorder.location} onChange={handleChange} required>
-                    <option disabled value="">Select...</option>
+                <select className='focu' name="location" value={workorder.location} onChange={handleChange} defaultValue="" required>
+                    <option disabled value="">Select Location</option>
                     <option value="Cardio 1">Cardio 1</option>
                     <option value="Cardio 2">Cardio 2</option>
                     <option value="Cardio 3">Cardio 3</option>
@@ -94,7 +94,7 @@ const WorkOrder = () => {
     {submitted && ( 
     <>
     <div className="flex justify-center items-center min-h-screen"> 
-        <div className="bg-gray-200 rounded-4xl p-20 flex-col text-center w-full m-20">
+        <div className="bg-gray-200 rounded-4xl p-20 flex-col text-center max-w-xl m-20">
             <h1 className='text-2xl font-semibold'>Thank you for your submission!</h1>
         <div className="flex justify-center items-center mb-4">
             <BadgeCheck className="text-blue-500 w-20 h-20 m-5" />

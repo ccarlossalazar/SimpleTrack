@@ -3,7 +3,6 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import { useState, useEffect } from "react"
 import { useLocation} from 'react-router-dom'
-import { workOrderInputs } from "../../formSource";
 import axios from 'axios'
 
 const NewRequestWorkOrder = ({}) => {
@@ -13,9 +12,11 @@ const NewRequestWorkOrder = ({}) => {
     const id = pathSplit[3]
   
   const [info, setInfo] = useState({})
+  const [equipmentList, setEquipmentList] = useState([])
+  const [selected, setSelected] = useState(null)
    
   const handleChange = (e) => {
-    setInfo(prev=>({...prev, [e.target.id]:e.target.value})) 
+    setInfo(prev=>({...prev, [e.target.name]:e.target.value})) 
   }
 
   useEffect(() => {
@@ -31,6 +32,18 @@ const NewRequestWorkOrder = ({}) => {
   fetchRequest()
   }, [path, id])
 
+    useEffect(() => {
+      const fetchEquipment = async () => {
+        try {
+          const res = await axios.get("http://localhost:5000/equipment")
+          setEquipmentList(res.data)
+        } catch (err) {
+          console.error("There was an error fetching equipment", err)
+        }
+      }
+      fetchEquipment()
+    }, [])
+
   const handleClick = async (e) => {
     e.preventDefault()
     try{
@@ -44,6 +57,13 @@ const NewRequestWorkOrder = ({}) => {
     }
   }
 
+  const handleSelect = (e) => {
+    const selectedId = e.target.value
+    const equipment = equipmentList.find(eq => eq.id === selectedId)
+    setSelected(equipment)
+    setInfo(prev => ({ ...prev, equipment_id: selectedId }))
+  }
+
   return (
     <div className="new">
       <Sidebar />
@@ -52,17 +72,54 @@ const NewRequestWorkOrder = ({}) => {
         <div className="top">
           <h1>New Work Order</h1>
         </div>
-        <div className="bottom">
-          <div className="right">
-            <form>
-              {workOrderInputs.map((input) => (
-                <div className="formInput" key={input.id}>
-                  <label>{input.label}</label>
-                  <input id={input.id} onChange={handleChange} type={input.type} placeholder={input.placeholder} value={info[input.id]}/>
+        <div className="bottom flex-col flex-2">
+          <div className="flex pl-12 pr-12 relative pb-15">
+            <div className="w-1/2 flex-col h-full">
+            <div>
+            <h2>Equipment ID:</h2>
+            <select value={info.equipment_id} onChange={handleSelect} className="border-b-1 border-b-gray-400 focus-within:outline-none pb-1 focus-within:border-b-blue-500 focus-within:border-b-2">
+                  <option value="">Select Equipment ID</option>
+                  {equipmentList.map((eq) => (
+                    <option key={eq.id} value={eq.id}>
+                      {eq.id} - {eq.name}
+                    </option>
+                  ))}
+                </select>
+                <div className="pt-8">
+                <h2>Description:</h2>
+                <textarea
+                  name="description"
+                  placeholder="What is wrong?"
+                  value={info.description}
+                  onChange={handleChange}
+                  rows={4}
+                  className="w-full h-3/4 focus-within:outline-none border-b-1 border-b-gray-400 focus-within:border-b-blue-500 focus-within:border-b-2"
+                  />
+                  </div>
                 </div>
-              ))}
-              <button onClick={handleClick}>Send</button>
-            </form>
+                  </div>
+              <div className="w-1/2 flex flex-col items-center">
+                <div className="flex flex-col">
+                <span className="underline">Equipment Details:</span>
+              {selected && 
+              <div className="">
+                <div>
+                <b>Name:</b>
+                <h2> {selected.name}</h2>
+                </div>
+                <div>
+                <b>Location:</b>
+                <h2> {selected.location}</h2>
+                </div>
+                <div>
+                <b>Condition:</b>
+                <h2 className="capitalize">{selected.equipment_condition}</h2>
+                </div>
+              </div>
+              }
+                </div>
+                  </div>
+                  <button className="absolute bottom-3 right-8 bg-green-400 p-2 rounded-xl" onClick={handleClick}>Send</button>
           </div>
         </div>
       </div>

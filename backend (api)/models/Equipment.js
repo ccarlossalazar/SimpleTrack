@@ -28,5 +28,8 @@ const Equipment = sequelize.define('Equipment', {
         allowNull: true
     },
 })
+Equipment.associate = (models) => {
+    Equipment.hasMany(models.WorkOrder, { foreignKey: 'equipment_id' });
+  }
 
 export default Equipment

@@ -4,39 +4,40 @@ import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from 'axios'
 
-const RecentWorkOrders = () => {
+const RecentLogs = () => {
 const location = useLocation()
 const pathSplit = location.pathname.split("/")
 const id = pathSplit[2]
 
-const [workorder, setWorkOrder] = useState([])
+const [log, setLog] = useState([])
 
 useEffect(() => {
-  setWorkOrder([])
-  const fetchWorkOrder = async () => {
+  const fetchLog = async () => {
     try{
-      const res = await axios.get(`http://localhost:5000/workorders/equipment/${id}`)
-      console.log(res.data)
-      setWorkOrder(res.data)
+     console.log(id)
+      const res = await axios.get(`http://localhost:5000/maintenance/${id}`)
+      console.log("Log Data", res.data)
+      setLog(res.data)
+      console.log(log)
     }catch(err) {
       console.log("There was an error", err)
     }
   }
-  fetchWorkOrder();
+  fetchLog();
 }, [id]);
 
   const columns = [
-    { field: "id", headerName: "ID", flex: 0.5},
-    { field: "equipment_id", headerName: "Equipment ID", flex: 0.5 },
-    { field: "status", headerName: "Status", flex: 0.5 },
-    { field: "description", headerName: "Description", flex: 3 },
+    { field: "id", headerName: "ID", flex:0.5},
+    { field: "date_completed", headerName: "Date Completed", flex: 0.5},
+    { field: "details", headerName: "Details", flex: 3},
+    { field: "cost", headerName: "Cost", flex: 0.5},
   ]
 
   return (
   <div className="w-full">
   <DataGrid 
         className="datagrid"
-        rows={workorder || []}
+        rows={log || []}
         columns={columns}
         pageSize={9}
         rowsPerPageOptions={[9]}
@@ -47,4 +48,4 @@ useEffect(() => {
   );
 };
 
-export default RecentWorkOrders;
+export default RecentLogs;

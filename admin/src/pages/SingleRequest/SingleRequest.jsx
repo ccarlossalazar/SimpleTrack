@@ -3,8 +3,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import Chart from "../../components/chart/Chart";
 import axios from 'axios'
-import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
@@ -31,7 +30,7 @@ const fetchRequest = async () => {
 fetchRequest()
 }, [path, id])
 
-
+ 
   return (
     <div className="single">
       <Sidebar />
@@ -39,8 +38,10 @@ fetchRequest()
         <Navbar />
         <div className="top relative">
           <div className="left">
-            <Link to="/requests"><h1 className="absolute bottom-4 bg-blue-300 p-1 rounded-lg text-blue-500">Back</h1></Link>
-            <h1 className="title">Information</h1>
+          <Link to="/requests">
+          <h1 className="absolute text-sm"><ArrowBackIcon className="text-gray-500"/></h1>
+          </Link>
+            <h1 className="title text-start pl-8">Information</h1>
             <div className="item">
               <img
                 src="https://www.pngfind.com/pngs/m/333-3339813_icon-request-for-pro-content-icon-png-transparent.png"
@@ -87,7 +88,7 @@ fetchRequest()
             </div>
             <div className="flex justify-end">
             <Link to={`/requests/new/${id}`}>
-            <button className="bg-green-200 p-3 rounded-2xl text-green-600 hover:bg-green-300 border-dotted border-1">Accept</button>
+            <button className="border-2 border-green-500 p-2 rounded-xl text-green-600 hover:bg-green-200">Accept</button>
             </Link>
             </div>
           </div>

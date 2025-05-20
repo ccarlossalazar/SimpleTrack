@@ -12,8 +12,10 @@ useEffect(() => {
   const fetchData = async () => {
     try{
       const res = await axios.get(`http://localhost:5000/workorders`)
-      console.log(res.data)
-      setData(res.data)
+      const completed = res.data.filter(
+        (order) => order.status?.toLowerCase() === "in progress"
+      );
+      setData(completed);
     }catch(err) {
       console.log("There was an error", err)
     }
@@ -22,10 +24,10 @@ useEffect(() => {
 }, []);
 
   const columns = [
+    { field: "id", headerName: "ID", flex: 0.5 },
     { field: "equipment_id", headerName: "Equipment ID", flex: 1 },
-    { field: "name", headerName: "Name", flex: 1 },
-    { field: "location", headerName: "Location", flex: 1 },
     { field: "status", headerName: "Status", flex: 1 },
+    { field: "createdAt", headerName: "Created", flex: 1 },
     { field: "description", headerName: "description", flex: 4 },
   ]
 
@@ -37,7 +39,6 @@ useEffect(() => {
         columns={columns}
         pageSize={8}
         rowsPerPageOptions={[8]}
-        checkboxSelection
         getRowId={(row)=>row.id}
         autoHeight
   />

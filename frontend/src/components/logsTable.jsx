@@ -7,9 +7,7 @@ const LogTable = () => {
     const {data, loading, error} = useFetch("/maintenance")
 
     const columns = [
-        {field: 'id', headerName: 'ID', flex: 1},
-        {field: 'work_order_id', headerName: 'Work Order ID', flex: 1},
-        {field: 'equipment_id', headerName: 'Equipment ID', flex: 1},
+        {field: 'id', headerName: 'ID', flex: 1},        {field: 'cost', headerName: 'Cost', flex: 1},
         {field: 'date_completed', headerName: 'Completed:', flex: 1},
         {field: 'details', headerName: 'Details:', flex: 1},
     ]

@@ -16,25 +16,17 @@ const WorkOrder = sequelize.define('WorkOrder', {
     allowNull: true,
     defaultValue: "in progress"
   },
-  cost: {
-    type: DataTypes.DECIMAL(10, 2),
-    defaultValue: 0.00,
-  },
   description: {
     type: DataTypes.TEXT,
     allowNull: false,
-  },
-  location: {
-    type: DataTypes.ENUM('Cardio 1', 'Cardio 2', 'Cardio 3'),
-    allowNull: false
   },
 }, {
     tableName: 'work_orders',
   });
 
-WorkOrder.associate = (models) => {
-  WorkOrder.belongsTo(models.Equipment, { foreignKey: 'equipment_id',   onDelete: 'CASCADE', 
-  })
-}
+  WorkOrder.associate = (models) => {
+    WorkOrder.belongsTo(models.Equipment, { foreignKey: 'equipment_id', onDelete: 'CASCADE' });
+    WorkOrder.hasMany(models.MaintenanceHistory, { foreignKey: 'work_order_id' });
+  }
 
 export default WorkOrder

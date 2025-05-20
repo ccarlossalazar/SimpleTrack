@@ -23,9 +23,9 @@ const people = [
   const TeamSection = () => {
     return (
       <div className="bg-white py-24 sm:py-32 m-5 rounded-3xl mb-20" id="contact">
-        <div className="mx-auto grid max-w-7xl gap-20 px-6 lg:px-8 xl:grid-cols-3">
+        <div className="mx-auto grid max-w-8xl gap-20 px-6 lg:px-8 xl:grid-cols-3">
           <div className="max-w-xl">
-            <h2 className="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight text-pretty text-[#003768] sm:text-4xl">
               Meet Our Team
             </h2>
             <p className="mt-6 text-lg/8 text-gray-900">

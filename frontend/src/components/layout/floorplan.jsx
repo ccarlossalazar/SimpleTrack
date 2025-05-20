@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import imageMapResize from 'image-map-resizer';
-import MAP from './layoutMap';
+import MAP from './layoutmap.js';
+import EquipmentTable from '../equipmentTable.jsx';
 
 const FloorPlan = () => {
   const [hoveredZone, setHoveredZone] = useState(null);
@@ -14,8 +15,8 @@ const FloorPlan = () => {
   const getCentroid = (coords) => {
     const points = coords.reduce(
       (acc, val, i) => {
-        if (i % 2 === 0) acc.x.push(parseFloat(val));
-        else acc.y.push(parseFloat(val));
+        if (i % 2 === 0) {acc.x.push(parseFloat(val))}
+        else {acc.y.push(parseFloat(val))}
         return acc;
       },
       { x: [], y: [] }
@@ -37,7 +38,8 @@ const FloorPlan = () => {
   };
 
   return (
-    <div className="relative w-full max-w-[1920px] mx-auto aspect-[1920/1080]">
+    <>
+    <div className="relative w-full max-w-[1920px] mx-auto aspect-[1920/1080] flex">
       <div className="relative w-full h-full">
         <img
           ref={imageRef}
@@ -68,36 +70,46 @@ const FloorPlan = () => {
           ))}
         </svg>
 
-        {/* Modal over the polygon with scaled coordinates */}
         {hoveredZone && imageRef.current && (() => {
           const renderedWidth = imageRef.current.clientWidth;
           const renderedHeight = imageRef.current.clientHeight;
 
           const { x, y } = getCentroidScaled(
             hoveredZone.coords,
-            1980, // SVG viewBox width
-            1080, // SVG viewBox height
+            1980,
+            1080, 
             renderedWidth,
             renderedHeight
           );
 
           return (
             <div
-              className="absolute bg-white shadow-md rounded p-3 z-50 text-sm pointer-events-none"
-              style={{
-                left: `${x}px`,
-                top: `${y}px`,
-                transform: 'translate(-50%, -100%)',
-              }}
-            >
-              <h2 className="font-semibold">{hoveredZone.name}</h2>
-              <p>{hoveredZone.info}</p>
-            </div>
-          );
-        })()}
+            className="absolute bg-white shadow-lg rounded-lg p-4 z-50 pointer-events-none max-w-xs"
+            style={{
+              left: `${x}px`,
+              top: `${y}px`,
+              transform: "translate(-50%, -110%)",
+            }}
+          >
+            <h2 className="text-lg font-bold mb-2">{hoveredZone.info.title}</h2>
+            <img
+              src={hoveredZone.info.image}
+              alt={hoveredZone.info.title}
+              className="w-full h-auto rounded mb-2"
+            />
+            <p className="text-sm mb-2">{hoveredZone.info.description}</p>
+            <ul className="list-disc list-inside text-xs">
+              {hoveredZone.info.features.map((f, i) => (
+                <li key={i}>{f}</li>
+              ))}
+            </ul>
+          </div>
+        )
+      })()}
       </div>
     </div>
-  );
-};
+    </>
+  )
+}
 
 export default FloorPlan;

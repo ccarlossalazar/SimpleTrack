@@ -73,16 +73,16 @@ export const equipmentColumns = [
 
 
 export const workOrderColumns = [
-  { field: "id", headerName: "ID", flex: 1 },
+  { field: "id", headerName: "ID", flex: 0.5 },
   {
-    field: "cost",
-    headerName: "Cost",
-    flex: 1,
+    field: "equipment_id",
+    headerName: "Equipment ID",
+    flex: 0.5,
   },
   {
     field: "status",
     headerName: "Status",
-    flex: 1,
+    flex: 0.5,
     renderCell: (params) => {
       return (
         <div className={`cellWithStatus ${params.row.status}`}>
@@ -92,9 +92,9 @@ export const workOrderColumns = [
     },
   },
   {
-    field: "createdAt",
-    headerName: "Created",
-    flex: 1,
+    field: "description",
+    headerName: "Description",
+    flex: 2,
   },
 ];
 
@@ -106,8 +106,13 @@ export const logColumns = [
     flex: 1,
   },
   {
-    field: "createdAt",
-    headerName: "Created",
+    field: "date_completed",
+    headerName: "Date Completed",
+    flex: 1,
+  },
+  {
+    field: "cost",
+    headerName: "Cost",
     flex: 1,
   },
 ]

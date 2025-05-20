@@ -16,6 +16,7 @@ import SingleWorkOrder from './components/pages/singleWorkOrder.jsx'
 import SingleEquipment from './components/pages/singleEquipment.jsx'
 import SingleLog from './components/pages/singleLog.jsx'
 import Notifications from './components/pages/notifications.jsx'
+import NewLog from './components/pages/newLog.jsx'
 
 function App() {
 
@@ -51,6 +52,7 @@ function App() {
       <Route path="/maintenance" element={<Logs />} />
       <Route path="/notifications" element={<Notifications />} />
       <Route path="/workorders/:id" element={<SingleWorkOrder />} />
+      <Route path="/maintenance/new/:id" element={<NewLog />} />
       <Route path="/equipment/:id" element={<SingleEquipment />} />
       <Route path="/maintenance/:id" element={<SingleLog />} />
 

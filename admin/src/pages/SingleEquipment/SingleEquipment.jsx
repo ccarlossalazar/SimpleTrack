@@ -4,11 +4,12 @@ import Navbar from "../../components/navbar/Navbar";
 import Chart from "../../components/chart/Chart";
 //import List from "../../components/table/Table";
 import axios from 'axios'
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import RecentWorkOrders from "../../components/table/WorkOrderTable";
 import { SquareChevronRight, SquareChevronDown } from "lucide-react";
-
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import RecentLogs from "../../components/table/LogTable";
 
 
 const SingleEquipment = () => {
@@ -47,6 +48,9 @@ const toggleLogs = () => {
 
   const toggleEdit = () => {
     setEdit(!edit)
+    if (edit) {
+      window.location.reload()
+    }
   }
   
   const handleChange = (e) => {
@@ -74,7 +78,10 @@ const toggleLogs = () => {
         <div className="top">
           <div className="left flex flex-col">
           {edit ? (<div onClick={toggleEdit} className="cancelButton">Cancel</div>) : (<div onClick={toggleEdit} className="editButton">Edit</div>)}
-          {edit ? (<h1 className="title">Editing</h1>) : (<h1 className="title">Information</h1>)}
+          <Link to="/equipment">
+          {!edit && <h1 className="absolute text-sm"><ArrowBackIcon className="text-gray-500"/></h1>}
+          </Link>
+          {edit ? (<h1 className="pb-5 text-blue-500">Editing</h1>) : (<h1 className="title text-start pl-8">Information</h1>)}
            {edit ? ( 
             <div className="item">
               <img
@@ -149,7 +156,7 @@ const toggleLogs = () => {
             )}
             {edit && 
             <div className="flex justify-end">
-              <button className="border-2 border-blue-500 p-2 rounded-xl bg-blue-200 hover:bg-blue-300" onClick={handleSubmit}>
+              <button className="border-2 border-blue-400 p-2 rounded-lg hover:bg-blue-300 text-blue-400 hover:text-blue-600" onClick={handleSubmit}>
                 Save Changes
               </button>
             </div>}
@@ -157,22 +164,18 @@ const toggleLogs = () => {
         </div>
         {!edit && (<>
         <div className="bottom">
-        <div className="flex justify-between">
+        <button className="title w-full text-end flex justify-between" onClick={toggleWorkOrders}>
         <h1 className="title">Recent Work Orders</h1>
-        <button className="title text-end" onClick={toggleWorkOrders}>
         {visibility ? <SquareChevronRight/> : <SquareChevronDown/>}
         </button>
-        </div>
         {!visibility && <RecentWorkOrders/>}
         </div>
         <div className="bottom">
-        <div className="flex justify-between">
+        <button className="title text-end w-full flex justify-between" onClick={toggleLogs}>
         <h1 className="title">Maintenance History</h1>
-        <button className="title text-end" onClick={toggleLogs}>
         {view ? <SquareChevronDown/> : <SquareChevronRight/>}
         </button>
-        </div>
-        {view && <RecentWorkOrders/>}
+        {view && <RecentLogs/>}
         </div> </>)}
       </div>
     </div>

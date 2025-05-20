@@ -12,6 +12,7 @@ const NewEquipment = ({}) => {
    
     const handleChange = (e) => {
       userInfo(prev=>({...prev, [e.target.id]:e.target.value})) 
+      setError("")
     }
 
     const handleClick = async (e) => {
@@ -39,14 +40,24 @@ const NewEquipment = ({}) => {
         </div>
         <div className="bottom">
           <div className="right">
-            <form>
+            <form className="relative">
               {equipmentInputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
-                  <input id={input.id} onChange={handleChange} type={input.type} placeholder={input.placeholder} />
+                  <input className="focus-within:outline-none" id={input.id} onChange={handleChange} type={input.type} placeholder={input.placeholder} />
                 </div>
               ))}
-              <Link to=""><button onClick={handleClick}>Send</button></Link>
+            <div className="formInput">
+             <label>Condition:</label>
+              <select className="border-b border-b-gray-400 focus-within:outline-none focus:border-b-blue-500 focus:border-b-2" id="equipment_condition" onChange={handleChange} defaultValue="excellent">
+               <option value="" disabled>Select condition</option>
+                <option value="excellent">Excellent</option>
+                <option value="good">Good</option>
+                <option value="fair">Fair</option>
+              <option value="poor">Poor</option>
+              </select>
+            </div>
+              <div className=" absolute right-5 bottom-0 border-2 p-2 text-green-500 rounded-lg hover:bg-green-200" onClick={handleClick}>Send</div>
               {err && <h1 className="errorMessage">{err}</h1>}
             </form>
           </div>

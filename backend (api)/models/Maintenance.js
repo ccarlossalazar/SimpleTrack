@@ -11,10 +11,6 @@ const MaintenanceHistory = sequelize.define('MaintenanceHistory', {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  equipment_id: {
-    type: DataTypes.CHAR(8),
-    allowNull: false,
-  },
   date_completed: {
     type: DataTypes.DATEONLY,
     allowNull: false,
@@ -22,15 +18,18 @@ const MaintenanceHistory = sequelize.define('MaintenanceHistory', {
   },
   details: {
     type: DataTypes.TEXT,
+    allowNull: false
+  }, cost: {
+    type: DataTypes.DECIMAL(10,2),
+    allowNull: true,
+    defaultValue: 0.00,
   },
 }, {
   tableName: 'maintenance_history',
 })
 
 MaintenanceHistory.associate = (models) => {
-  MaintenanceHistory.belongsTo(models.WorkOrder, { foreignKey: 'work_order_id',   onDelete: 'CASCADE', 
-  })
-  MaintenanceHistory.belongsTo(models.Equipment, { foreignKey: 'equipment_id', onDelete: 'CASCADE', 
+  MaintenanceHistory.belongsTo(models.WorkOrder, { foreignKey: 'work_order_id', 
   })
 }
 

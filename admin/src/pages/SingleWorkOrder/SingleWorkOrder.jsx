@@ -5,6 +5,8 @@ import Chart from "../../components/chart/Chart";
 import axios from 'axios'
 import { useLocation, Link} from "react-router-dom";
 import { useState, useEffect } from "react";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
 
 
 const SingleWorkOrder = () => {
@@ -33,6 +35,9 @@ fetchWorkOrder()
 
 const toggleEdit = () => {
   setEdit(!edit)
+  if (edit) {
+    window.location.reload()
+  }
 }
 
 const handleChange = (e) => {
@@ -59,8 +64,11 @@ const handleUpdate = async () => {
         <Navbar />
         <div className="top">
           <div className="left">
+          <Link to="/workorders">
+          {!edit && <h1 className="absolute text-sm"><ArrowBackIcon className="text-gray-500"/></h1>}
+          </Link>
             {edit ? (<div className="cancelButton" onClick={toggleEdit}>Cancel</div>) : (<div className="editButton" onClick={toggleEdit}>Edit</div>)}
-            {edit ? (<h1 className="title">Editing</h1>): (<h1 className="title">Information</h1>)}
+            {edit ? (<h1 className="pb-5 text-blue-500">Editing</h1>): (<h1 className="title text-start pl-8">Information</h1>)}
             {edit ? (
             <div className="item">
               <img
@@ -71,17 +79,30 @@ const handleUpdate = async () => {
               <div className="details">
                 <h1 className="itemTitle font-bold text-2xl">Work Order For: {data.equipment_id}</h1>
                 <div className="detailItem">
+                  <span className="itemKey">Work Order ID:</span>
+                  <span className="itemValue">{data.id}</span>
+                </div>
+                <div className="detailItem">
+                  <span className="itemKey">Equipment ID:</span>
+                  <input className="itemValue field-sizing-content border-b-2 border-b-gray-300 outline-hidden focus:border-b-blue-500" id="equipment_id" value={data.equipment_id} onChange={handleChange}></input>
+                </div>
+                <div className="detailItem">
                   <span className="itemKey">Equipment Name:</span>
-                  <input className="itemValue"></input>
+                  <span className="itemValue" id="name">{data.Equipment?.name}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Location:</span>
-                  <input className="itemValue field-sizing-fixed border-b-2 border-b-gray-300 outline-hidden focus:border-b-blue-500" id="location" value={data.location} onChange={handleChange}></input>
+                  <span className="itemValue">{data.Equipment?.location}</span>
+                </div>
+                <div className="detailItem">
+                  <span className="itemKey">Condition:</span>
+                  <span className="itemValue capitalize" id="equipment_condition">{data.Equipment?.equipment_condition}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Status:</span>
-                  <input className="itemValue capitalize field-sizing-fixed border-b-2 border-b-gray-300 outline-hidden focus:border-b-blue-500" id="status" value={data.status} onChange={handleChange}>
-                  </input>
+                  <span className="itemValue capitalize">
+                  {data.status} 
+                  </span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Description:</span>
@@ -102,12 +123,24 @@ const handleUpdate = async () => {
                           <div className="details">
                             <h1 className="itemTitle font-bold text-2xl">Work Order For: {data.equipment_id}</h1>
                             <div className="detailItem">
+                              <span className="itemKey">Work Order ID:</span>
+                              <span className="itemValue">{data.id}</span>
+                            </div>
+                            <div className="detailItem">
+                              <span className="itemKey">Equipment ID:</span>
+                              <span className="itemValue">{data.equipment_id}</span>
+                            </div>
+                            <div className="detailItem">
                               <span className="itemKey">Equipment Name:</span>
-                              <span className="itemValue">{data.name}</span>
+                              <span className="itemValue">{data.Equipment?.name}</span>
                             </div>
                             <div className="detailItem">
                               <span className="itemKey">Location:</span>
-                              <span className="itemValue">{data.location}</span>
+                              <span className="itemValue">{data.Equipment?.location}</span>
+                            </div>
+                            <div className="detailItem">
+                              <span className="itemKey">Condition:</span>
+                              <span className="itemValue capitalize">{data.Equipment?.equipment_condition}</span>
                             </div>
                             <div className="detailItem">
                               <span className="itemKey">Status:</span>
@@ -127,7 +160,7 @@ const handleUpdate = async () => {
                         </div>)}
                         {edit ? (
             <div className="flex justify-end">
-              <button className="border-2 border-blue-500 p-2 rounded-xl bg-blue-200 hover:bg-blue-300" onClick={handleUpdate}>
+              <button className="border-2 border-blue-400 p-2 rounded-lg hover:bg-blue-300 text-blue-400 hover:text-blue-600" onClick={handleUpdate}>
                 Save Changes
               </button>
             </div>) : (<div className="flex justify-end">

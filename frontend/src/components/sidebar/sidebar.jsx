@@ -79,19 +79,19 @@ const Sidebar = () => {
             <span>Maintenance Logs</span>
           </li>
           </Link>
-          <li>
             <Link to="/notifications">
+          <li>
             <NotificationsNoneIcon className="text-[#003768]" />
             <span>Notifications</span>
-            </Link>
           </li>
+            </Link>
           <p className="title">USER</p>
-          <li>
           <Link to='/'>
+          <li>
             <KeyboardReturnIcon className="text-[#003768]" />
             <span>Back to MainPage</span>
-          </Link>
           </li>
+          </Link>
           <li onClick={toggleLogout}>
             <AccountCircleOutlinedIcon className="text-[#003768]" />
             {user ? (<span>{user.username}</span>) : null}

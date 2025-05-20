@@ -50,10 +50,12 @@ const Sidebar = () => {
       <div className="center">
         <ul className="text-[#003768]">
           <p className="title">MAIN</p>
+            <Link to='/'>
           <li>
             <DashboardIcon className="icon" />
-            <Link to='/'><span>Dashboard</span></Link>
+            <span>Dashboard</span>
           </li>
+            </Link>
           <p className="title">LISTS</p>
           <Link to="/users" style={{ textDecoration: "none" }}>
             <li>
@@ -99,9 +101,9 @@ const Sidebar = () => {
           </li>
           </Link>
           <p className="title">USER</p>
-          <li>
+          <li onClick={mainPage}>
             <KeyboardReturnIcon className="icon" />
-            <span><button onClick={mainPage}>Back to site</button></span>
+            <span><button>Back to site</button></span>
           </li>
           <li onClick={toggleLogout}>
             <AccountCircleOutlinedIcon className="icon" />

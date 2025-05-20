@@ -11,7 +11,6 @@ const NewLog = ({}) => {
   const [info, setInfo] = useState({})
   const location = useLocation()
     const pathSplit = location.pathname.split("/")
-    const path = pathSplit[1]
     const id = pathSplit[3]
 
 
@@ -52,7 +51,6 @@ const NewLog = ({}) => {
       }
       console.log("New Log Payload:", newLog);
       await axios.post("http://localhost:5000/maintenance", newLog)
-     //await axios.delete(`http://localhost:5000/workorders/${id}`)
       window.location.href = "/maintenance"
     } catch(err){
       console.error("Error Creating New Log:", err.message);

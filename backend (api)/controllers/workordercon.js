@@ -1,5 +1,5 @@
-import WorkOrder from "../models/WorkOrders.js"
-
+import models from "../models/models.js"
+const {MaintenanceHistory: Logs, WorkOrder, Equipment} = models
 
 export const createWorkOrder = async (req, res,next) => {
     const newWorkOrder = new WorkOrder(req.body)
@@ -13,11 +13,18 @@ export const createWorkOrder = async (req, res,next) => {
 
 export const getAllWorkOrders = async (req,res,next)=>{
     try {
-        const work_orders = await WorkOrder.findAll()
-        res.status(200).json(work_orders)
-    } catch (err) {
-        next(err)
-    }
+        const work_orders = await WorkOrder.findAll({
+          include: [
+            {
+              model: Equipment,
+              attributes: ['name', 'location', 'equipment_condition'],
+            },
+          ],
+        });
+        res.status(200).json(work_orders);
+      } catch (err) {
+        next(err);
+      }
 }
 
 export const deleteWorkOrder = async (req,res,next)=>{
@@ -47,12 +54,18 @@ export const getEquipmentWorkOrders = async (req,res,next)=>{
 
 export const getWorkOrder = async (req,res,next)=>{
     try {
-        const workOrder = await WorkOrder.findByPk(req.params.id)
-
+        const workOrder = await WorkOrder.findByPk(req.params.id, {
+          include: [
+            {
+              model: Equipment,
+              attributes: ['name', 'location', 'equipment_condition'],
+            },
+          ],
+        })
         res.status(200).json(workOrder)
-    } catch (err) {
+      } catch (err) {
         next(err)
-    }
+      }
 }
 
 export const updateWorkOrder = async (req,res,next)=>{

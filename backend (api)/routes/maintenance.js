@@ -1,5 +1,5 @@
 import express from "express"
-import { getLogs, deleteLog, createLog, getEquipmentLogs, getLogById, logCount } from "../controllers/maintenancecon.js"
+import { getLogs, deleteLog, createLog, getEquipmentLogs, getLogById, logCount, updateLog } from "../controllers/maintenancecon.js"
 
 const router = express.Router()
 
@@ -14,6 +14,8 @@ router.delete("/:id", deleteLog)
 router.get("/:id", getEquipmentLogs)
 
 router.get("/get/:id", getLogById)
+
+router.put("/:id", updateLog)
 
 
 export default router

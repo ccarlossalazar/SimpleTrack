@@ -74,7 +74,7 @@ const New = ({ inputs, title }) => {
             />
           </div>
           <div className="right">
-            <form>
+            <form className="relative">
               <div className="formInput">
                 <label htmlFor="file">
                   Image: <DriveFolderUploadOutlinedIcon className="icon" />
@@ -86,14 +86,22 @@ const New = ({ inputs, title }) => {
                   style={{ display: "none" }}
                 />
               </div>
-
               {inputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
-                  <input onChange={handleChange} type={input.type} placeholder={input.placeholder} id={input.id}/>
+                  <input className="focus-within:outline-none" onChange={handleChange} type={input.type} placeholder={input.placeholder} id={input.id}/>
                 </div>
               ))}
-              <Link><button className="" onClick={handleClick}>Send</button></Link>
+                          <div className="formInput">
+             <label>Role:</label>
+              <select className="border-b border-b-gray-400 focus-within:outline-none focus:border-b-blue-500 focus:border-b-2" id="role" onChange={handleChange} defaultValue="">
+               <option value="" disabled>Select condition</option>
+                <option value="employee">Employee</option>
+                <option value="admin">Admin</option>
+                <option value="maintenance">Maintenance</option>
+              </select>
+            </div>
+              <div className="absolute right-5 bottom-0 border-2 p-2 text-green-500 rounded-lg hover:bg-green-200" onClick={handleClick}>Send</div>
             </form>
           </div>
         </div>

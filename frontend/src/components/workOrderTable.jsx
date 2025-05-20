@@ -9,12 +9,10 @@ const WorkOrderTable = () => {
     const {data, loading, error} = useFetch("/workorders")
 
     const columns = [
-        {field: 'id', headerName: 'Work Order Id', flex: 1},
-        {field: 'equipment_id', headerName: 'Equipment Id', flex: 1},
-        {field: 'name', headerName: 'Name', flex: 1},
-        {field: 'location', headerName: 'Location', flex: 1},
-        {field: 'status', headerName: 'Status', flex: 1},
-        {field: 'description', headerName: 'Description', flex: 1},
+        {field: 'id', headerName: "Work Order ID", flex: 0.5},
+        {field: 'equipment_id', headerName: 'Equipment ID', flex: 0.5},
+        {field: 'status', headerName: 'Status', flex: 0.5},
+        {field: 'description', headerName: 'Description', flex: 2},
     ]
 
     const actionColumn = [
@@ -33,11 +31,13 @@ const WorkOrderTable = () => {
                 </button>
                   </Link>
             {role === "maintenance" && (
+              <Link to={`/maintenance/new/${params.row.id}`}>
                 <button
                   className="px-2 py-1 text-sm border border-dotted border-green-700 text-green-700 rounded hover:bg-green-50 transition"
-                >
+                  >
                   Complete
                 </button>
+                  </Link>
               )}
               </div>
             );
@@ -56,13 +56,14 @@ const WorkOrderTable = () => {
         <div className='flex justify-center w-full mt-8'>
         <div className="w-full max-w-screen h-[600px] overflow-x-auto px-4">    
         <DataGrid className='bg-white rounded-lg shadow-md'
-        rows = {data}
+        rows = {data?.filter(order => order.status?.toLowerCase() === "in progress")}
         columns = {columns.concat(actionColumn)}
         loading = {loading}
         pageSize={10}
         rowsPerPageOptions={[10]}
         getRowId={(row) => row.id}
         checkboxSelection
+        disableMultipleRowSelection
         sx={{ border: 'none' }} 
         />
         </div>
